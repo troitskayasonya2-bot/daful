@@ -1,0 +1,184 @@
+<!-- ==============================================
+     БЛОК 10 — FAQ (частые вопросы)
+     Раскрытие по клику (details/summary), без JS.
+     Вставка: Tilda Zero Block или HTML-блок
+     ============================================== -->
+
+<style>
+.dafull-faq {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #fff;
+  color: #13161F;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 64px 24px 72px;
+  position: relative;
+}
+.dafull-faq__inner {
+  box-sizing: border-box;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 0 16px;
+}
+.dafull-faq__head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+.dafull-faq__title {
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #13161F;
+  margin: 0 0 12px;
+}
+.dafull-faq__subtitle {
+  font-size: 17px;
+  line-height: 1.5;
+  color: #4A4F5C;
+  margin: 0;
+}
+.dafull-faq__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dafull-faq__item {
+  box-sizing: border-box;
+  min-width: 0;
+  border-bottom: 1px solid #E5E7EB;
+}
+.dafull-faq__item:first-child {
+  border-top: 1px solid #E5E7EB;
+}
+.dafull-faq__item summary {
+  font-size: 17px;
+  font-weight: 600;
+  color: #13161F;
+  padding: 20px 44px 20px 0;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+.dafull-faq__item summary::-webkit-details-marker { display: none; }
+.dafull-faq__item summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #F3F4F6;
+  color: #13161F;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  text-align: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.dafull-faq__item[open] summary::after {
+  content: '−';
+  background: #FF6300;
+  color: #fff;
+}
+.dafull-faq__item summary:hover {
+  color: #FF6300;
+}
+.dafull-faq__item[open] summary {
+  color: #13161F;
+}
+.dafull-faq__answer {
+  font-size: 16px;
+  line-height: 1.55;
+  color: #4A4F5C;
+  padding: 0 0 24px 0;
+  margin: 0;
+}
+.dafull-faq__cta {
+  text-align: center;
+  margin-top: 40px;
+}
+.dafull-faq__cta-text {
+  font-size: 16px;
+  color: #4A4F5C;
+  margin: 0 0 16px;
+}
+.dafull-faq__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #FF6300;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.dafull-faq__cta-btn:hover {
+  background: #E55800;
+  box-shadow: 0 6px 20px rgba(255, 99, 0, 0.35);
+  transform: translateY(-2px);
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .dafull-faq { padding: 48px 16px 56px; }
+  .dafull-faq__inner { padding: 0; }
+  .dafull-faq__head { margin-bottom: 32px; }
+  .dafull-faq__item summary { padding: 18px 40px 18px 0; font-size: 16px; }
+}
+</style>
+
+<section class="dafull-faq" id="faq">
+  <div class="dafull-faq__inner">
+    <div class="dafull-faq__head">
+      <h2 class="dafull-faq__title">Частые вопросы</h2>
+      <p class="dafull-faq__subtitle">Ответы на то, что спрашивают чаще всего.</p>
+    </div>
+    <ul class="dafull-faq__list">
+      <li class="dafull-faq__item">
+        <details>
+          <summary>Где находится склад?</summary>
+          <p class="dafull-faq__answer">Склад DaFull расположен в Москве. Удобная логистика: быстрая доставка от вас до нас и оперативная отгрузка на склады Wildberries и Ozon.</p>
+        </details>
+      </li>
+      <li class="dafull-faq__item">
+        <details>
+          <summary>Какие сроки приёмки и отгрузки?</summary>
+          <p class="dafull-faq__answer">Приняли товар — в тот же день отгружаем на склад маркетплейса или в службу доставки. Работаем 7 дней в неделю. Срок приёмки зависит от объёма партии — уточним при расчёте.</p>
+        </details>
+      </li>
+      <li class="dafull-faq__item">
+        <details>
+          <summary>Кто несёт ответственность за товар?</summary>
+          <p class="dafull-faq__answer">Ответственность за сохранность товара на складе и при обработке закреплена в договоре. Условия страхования и компенсации обсудим до старта сотрудничества.</p>
+        </details>
+      </li>
+      <li class="dafull-faq__item">
+        <details>
+          <summary>Есть ли минимальный объём?</summary>
+          <p class="dafull-faq__answer">Минимальный объём зависит от типа товара и формата (FBO или FBS). Пройдите квиз или оставьте заявку — рассчитаем стоимость и условия под ваш кейс.</p>
+        </details>
+      </li>
+      <li class="dafull-faq__item">
+        <details>
+          <summary>Как передать товар на склад?</summary>
+          <p class="dafull-faq__answer">Можно привезти сами или отправить транспортом. После согласования расчёта подскажем адрес, режим приёмки и требования к документам и маркировке.</p>
+        </details>
+      </li>
+    </ul>
+    <div class="dafull-faq__cta">
+      <p class="dafull-faq__cta-text">Не нашли ответ? Напишите нам — ответим быстро.</p>
+      <a href="#rec1947644431" class="dafull-faq__cta-btn">Получить консультацию</a>
+    </div>
+  </div>
+</section>

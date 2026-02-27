@@ -1,0 +1,93 @@
+<!-- ==============================================
+     БЛОК 11 — Финальный CTA
+     Призыв «Перестать терять на штрафах» + кнопка.
+     Вставка: Tilda Zero Block или HTML-блок (в конец страницы)
+     ============================================== -->
+
+<style>
+.dafull-cta-final {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #13161F;
+  color: #fff;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 72px 24px 80px;
+  position: relative;
+  text-align: center;
+}
+.dafull-cta-final::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(255, 99, 0, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.dafull-cta-final__inner {
+  box-sizing: border-box;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+.dafull-cta-final__title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 16px;
+}
+.dafull-cta-final__title span {
+  color: #FF6300;
+}
+.dafull-cta-final__text {
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 32px;
+}
+.dafull-cta-final__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  background: #FF6300;
+  text-decoration: none;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.dafull-cta-final__btn:hover {
+  background: #E55800;
+  box-shadow: 0 8px 28px rgba(255, 99, 0, 0.45);
+  transform: translateY(-2px);
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .dafull-cta-final { padding: 56px 16px 64px; }
+  .dafull-cta-final__inner { padding: 0; }
+  .dafull-cta-final__text { font-size: 16px; margin-bottom: 28px; }
+  .dafull-cta-final__btn { padding: 18px 32px; font-size: 17px; }
+}
+</style>
+
+<section class="dafull-cta-final" id="cta-final">
+  <div class="dafull-cta-final__inner">
+    <h2 class="dafull-cta-final__title">Перестаньте терять на штрафах</h2>
+    <p class="dafull-cta-final__text">Фулфилмент по ТЗ маркетплейсов, отгрузка день в день. Рассчитайте стоимость за 2 минуты — без обязательств.</p>
+    <a href="#rec1947644431" class="dafull-cta-final__btn">Рассчитать стоимость</a>
+  </div>
+</section>

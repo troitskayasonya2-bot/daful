@@ -1,0 +1,49 @@
+<!-- ==============================================
+     Пустой белый блок на всю ширину экрана для будущего контента.
+     Вставка: один Zero Block в Tilda.
+     ============================================== -->
+
+<section class="daf-placeholder-white" aria-label="Блок для контента">
+  <div class="daf-placeholder-white__inner">
+    <!-- Сюда можно добавить контент -->
+  </div>
+</section>
+
+<style>
+.daf-placeholder-white {
+  width: 100%;
+  max-width: 100vw;
+  min-height: 400px;
+  background: #fff !important;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 60;
+  border-top: 1px solid #e5e5e5;
+  /* Дублируем фон слоем и тенью — если Tilda сбрасывает background */
+  box-shadow: inset 0 0 0 9999px #fff;
+  overflow: hidden;
+}
+.daf-placeholder-white::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  min-width: 100%;
+  min-height: 100%;
+  background: #fff;
+  pointer-events: none;
+}
+
+.daf-placeholder-white__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  min-height: 400px;
+  box-sizing: border-box;
+  padding: 40px 20px;
+}
+</style>

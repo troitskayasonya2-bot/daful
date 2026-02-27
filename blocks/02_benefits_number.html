@@ -1,0 +1,317 @@
+<!-- ==============================================
+     БЛОК: Преимущества + цифра (наезд на hero)
+     Вставка: Tilda Zero Block. Классы .daf-benefits
+     Белая панель с вырезом-трапецией сверху, одна синяя обводка по периметру.
+     ============================================== -->
+
+<section class="daf-benefits" id="benefits">
+  <div class="daf-benefits__panel">
+    <!-- Тёмно-серая вставка в вырезе (под слой белой панели) -->
+    <div class="daf-benefits__tab" aria-hidden="true"></div>
+    <!-- Белая панель с вырезом: обводка и фон одной формой -->
+    <div class="daf-benefits__panel-shape">
+      <div class="daf-benefits__in">
+        <div class="daf-benefits__col daf-benefits__col--list">
+          <ul class="daf-benefits__list">
+            <li class="daf-benefits__item">
+              <img src="https://static.tildacdn.com/tild3061-3963-4435-a333-636433656161/svg_1771802408943.svg" alt="" class="daf-benefits__check" width="22" height="22" />
+              <span>Отгрузка день в день</span>
+            </li>
+            <li class="daf-benefits__item">
+              <img src="https://static.tildacdn.com/tild3061-3963-4435-a333-636433656161/svg_1771802408943.svg" alt="" class="daf-benefits__check" width="22" height="22" />
+              <span>Работа по ТЗ маркетплейсов</span>
+            </li>
+            <li class="daf-benefits__item">
+              <img src="https://static.tildacdn.com/tild3061-3963-4435-a333-636433656161/svg_1771802408943.svg" alt="" class="daf-benefits__check" width="22" height="22" />
+              <span>Контроль качества</span>
+            </li>
+          </ul>
+        </div>
+        <div class="daf-benefits__col daf-benefits__col--right">
+          <h2 class="daf-benefits__title">Контроль качества</h2>
+          <p class="daf-benefits__subtitle">Вы не теряете деньги на штрафах</p>
+          <div class="daf-benefits__number-block">
+            <span class="daf-benefits__number">10 000+</span>
+            <span class="daf-benefits__number-label">довольных<br>селлеров</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+/* Наезд на hero на треть высоты экрана */
+.daf-benefits {
+  position: relative;
+  z-index: 50;
+  margin-top: -33vh;
+  padding: 0 16px 0;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.daf-benefits__panel {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 210px;
+  box-sizing: border-box;
+}
+
+/* Трапеция: вставка в вырезе, под белой панелью */
+.daf-benefits__tab {
+  position: absolute;
+  top: 0;
+  left: 3.33%;
+  width: 43.34%;
+  max-width: 520px;
+  height: 85px;
+  background: #3B3B3B;
+  clip-path: polygon(0 100%, 15% 0, 85% 0, 100% 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Белая панель с вырезом + одна синяя обводка по периметру */
+.daf-benefits__panel-shape {
+  position: relative;
+  z-index: 1;
+  min-height: 210px;
+  padding: 26px 44px 34px;
+  padding-top: 96px;
+  background: #fff;
+  border: 3px solid #1E88FF;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  clip-path: polygon(
+    0 85px,
+    3.33% 85px,
+    10% 0,
+    40% 0,
+    46.67% 85px,
+    100% 85px,
+    100% 100%,
+    0 100%
+  );
+}
+
+.daf-benefits__in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 100px;
+}
+
+.daf-benefits__col--list {
+  flex-shrink: 0;
+}
+
+.daf-benefits__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.daf-benefits__item {
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: #111;
+}
+
+.daf-benefits__check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-right: 12px;
+  display: block;
+  object-fit: contain;
+  filter: invert(48%) sepia(98%) saturate(1800%) hue-rotate(10deg);
+}
+
+.daf-benefits__col--right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+}
+
+.daf-benefits__title {
+  margin: 0 0 6px;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 27px;
+  font-weight: 800;
+  color: #FF6A00;
+  line-height: 1.2;
+}
+
+.daf-benefits__subtitle {
+  margin: 0 0 14px;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: #222;
+  line-height: 1.3;
+}
+
+.daf-benefits__number-block {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.daf-benefits__number {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  color: #FF6A00;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.daf-benefits__number-label {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #FF6A00;
+  line-height: 1.4;
+  max-width: 100px;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .daf-benefits__panel {
+    min-height: 220px;
+  }
+
+  .daf-benefits__tab {
+    height: 72px;
+  }
+
+  .daf-benefits__panel-shape {
+    min-height: 220px;
+    padding: 28px 36px 28px;
+    padding-top: 88px;
+    clip-path: polygon(
+      0 72px,
+      3.33% 72px,
+      10% 0,
+      40% 0,
+      46.67% 72px,
+      100% 72px,
+      100% 100%,
+      0 100%
+    );
+  }
+
+  .daf-benefits__in {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .daf-benefits__list {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .daf-benefits__item {
+    font-size: 17px;
+  }
+
+  .daf-benefits__check {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+  }
+
+  .daf-benefits__col--right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .daf-benefits__title {
+    font-size: 23px;
+  }
+
+  .daf-benefits__subtitle {
+    font-size: 18px;
+  }
+
+  .daf-benefits__number {
+    font-size: 52px;
+  }
+
+  .daf-benefits__number-label {
+    font-size: 18px;
+    max-width: 100px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .daf-benefits {
+    margin-top: -28vh;
+    padding: 0 12px 0;
+  }
+
+  .daf-benefits__tab {
+    height: 56px;
+  }
+
+  .daf-benefits__panel-shape {
+    padding: 20px 20px 24px;
+    padding-top: 76px;
+    clip-path: polygon(
+      0 56px,
+      4% 56px,
+      12% 0,
+      38% 0,
+      46% 56px,
+      100% 56px,
+      100% 100%,
+      0 100%
+    );
+  }
+
+  .daf-benefits__item {
+    font-size: 16px;
+  }
+
+  .daf-benefits__check {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .daf-benefits__title {
+    font-size: 22px;
+  }
+
+  .daf-benefits__subtitle {
+    font-size: 17px;
+  }
+
+  .daf-benefits__number {
+    font-size: 48px;
+  }
+
+  .daf-benefits__number-label {
+    font-size: 17px;
+  }
+}
+</style>

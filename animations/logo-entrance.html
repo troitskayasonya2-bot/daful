@@ -1,0 +1,20 @@
+<!--
+  Анимация появления логотипа через код (Tilda)
+  Вставка: Настройки страницы → Дополнительный код → Перед закрывающим тегом </body>
+
+  В редакторе Tilda: выделите блок с логотипом → Настройки блока → поле "ID блока" → введите: dafull-logo
+  Сохраните и опубликуйте страницу.
+-->
+<style>
+  #dafull-logo {
+    opacity: 0 !important;
+    transform: scale(0.92) translateY(24px);
+    animation: dafull-logo-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  }
+  @keyframes dafull-logo-in {
+    to {
+      opacity: 1 !important;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>

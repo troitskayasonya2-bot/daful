@@ -1,0 +1,564 @@
+<!-- ==============================================
+     ШАПКА — Тёмная, полупрозрачная, фиксированная, анимированная
+     Лого (SVG) + навигация + CTA. Попап квиза по якорю #rec1947644431
+     Вставка: Tilda Zero Block — ВЫШЕ Hero.
+     ============================================== -->
+
+<style>
+/* Цвета как у Lovelabel: brand 25 95% 53%, header-bg 0 0% 12% / 0.85 */
+.dafull-header-wrap { position: relative; }
+
+.dafull-header {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(31, 31, 31, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  transform: translateY(-100%);
+  opacity: 0;
+  animation: dafull-header-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes dafull-header-in {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.dafull-header.is-scrolled {
+  background: rgba(31, 31, 31, 0.92);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+}
+
+.dafull-header__spacer { height: 64px; flex-shrink: 0; }
+
+.dafull-header__in {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.dafull-header__left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dafull-header__logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.dafull-header__logo img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: none;
+}
+.dafull-header__logo.has-img img {
+  display: block;
+}
+.dafull-header__logo-fallback {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.dafull-header__logo-fallback .da { color: #fff; }
+.dafull-header__logo-fallback .ful { color: hsl(25, 95%, 53%); }
+.dafull-header__logo.has-img .dafull-header__logo-fallback {
+  display: none !important;
+}
+
+/* Навигация по центру (как у Lovelabel: absolute left-1/2 -translate-x-1/2) */
+.dafull-header__nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.dafull-header__nav a {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+  padding: 6px 0;
+}
+.dafull-header__nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: hsl(25, 95%, 53%);
+  transition: width 0.3s ease;
+}
+.dafull-header__nav a:hover {
+  color: hsl(25, 95%, 53%);
+}
+.dafull-header__nav a:hover::after {
+  width: 100%;
+}
+
+.dafull-header__right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* CTA: rounded-full, brand, hover:brand-hover + shadow-brand-glow + scale-105, active:scale-95 */
+.dafull-header__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: hsl(25, 95%, 53%);
+  text-decoration: none;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px hsla(25, 95%, 53%, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.dafull-header__cta:hover {
+  background: hsl(25, 95%, 45%);
+  box-shadow: 0 4px 24px hsla(25, 95%, 53%, 0.5);
+  transform: scale(1.05);
+}
+.dafull-header__cta:active {
+  transform: scale(0.95);
+}
+
+/* Бургер (мобилка) */
+.dafull-header__burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+.dafull-header__burger:hover { background: rgba(255, 255, 255, 0.18); }
+.dafull-header__burger span {
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  position: relative;
+}
+.dafull-header__burger span::before,
+.dafull-header__burger span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  top: -6px;
+}
+.dafull-header__burger span::after { top: 6px; }
+.dafull-header__burger.is-open span { background: transparent; }
+.dafull-header__burger.is-open span::before { top: 0; transform: rotate(45deg); }
+.dafull-header__burger.is-open span::after { top: 0; transform: rotate(-45deg); }
+
+/* Выпадающее меню (мобилка) */
+.dafull-header__dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(38, 38, 38, 0.98);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 24px 24px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+.dafull-header__dropdown.is-open { display: block; }
+.dafull-header__dropdown-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+.dafull-header__dropdown-nav a {
+  display: block;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dafull-header__dropdown-nav a:last-child { border-bottom: none; }
+.dafull-header__dropdown-nav a:hover { color: #FF6300; }
+.dafull-header__dropdown-cta {
+  display: block;
+  text-align: center;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: #FF6300;
+  text-decoration: none;
+  border-radius: 999px;
+}
+.dafull-header__dropdown-cta:hover { background: #E55800; color: #fff; }
+
+@media (max-width: 900px) {
+  .dafull-header__nav,
+  .dafull-header__right { display: none; }
+  .dafull-header__burger { display: flex; }
+  .dafull-header__in { padding: 12px 16px; }
+}
+@media (max-width: 480px) {
+  .dafull-header__logo img { height: 28px; }
+  .dafull-header__logo-fallback { font-size: 18px; }
+}
+
+/* ——— Попап квиза ——— */
+.dafull-quiz-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.dafull-quiz-popup.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.dafull-quiz-popup__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(19, 22, 31, 0.65);
+  cursor: pointer;
+}
+.dafull-quiz-popup__box {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 920px;
+  max-height: 88vh;
+  margin: auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.dafull-quiz-popup__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: #F3F4F6;
+  color: #13161F;
+  font-size: 26px;
+  line-height: 1;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.dafull-quiz-popup__close:hover {
+  background: #E5E7EB;
+  color: #13161F;
+}
+.dafull-quiz-popup__content {
+  padding: 28px 24px 32px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 88vh;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.dafull-quiz-popup__quiz-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.dafull-quiz-popup__quiz-scale {
+  overflow: hidden;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+.dafull-quiz-popup__quiz-wrap > *,
+.dafull-quiz-popup__quiz-scale > * { flex-shrink: 0; }
+@media (max-width: 960px) {
+  .dafull-quiz-popup__box { max-width: 100%; max-height: 92vh; }
+  .dafull-quiz-popup { padding: 16px; }
+  .dafull-quiz-popup__content { padding: 20px 16px 24px; }
+}
+</style>
+
+<div class="dafull-header-wrap">
+<header class="dafull-header" id="header">
+  <div class="dafull-header__in">
+    <div class="dafull-header__left">
+      <a href="#" class="dafull-header__logo" aria-label="DaFUL — на главную">
+        <img src="https://static.tildacdn.com/tild6566-6131-4062-a135-346133636134/svg_1771796594418.svg" alt="DaFUL" width="112" height="33" loading="eager" />
+        <span class="dafull-header__logo-fallback"><span class="da">Da</span><span class="ful">FUL</span></span>
+      </a>
+    </div>
+    <nav class="dafull-header__nav" aria-label="Основное меню">
+      <a href="#rec1947644431">Услуги</a>
+      <a href="#rec1947644431">Кейсы</a>
+      <a href="#rec1947644431">Стоимость</a>
+      <a href="#rec1947644431">FAQ</a>
+    </nav>
+    <div class="dafull-header__right">
+      <a href="#rec1947644431" class="dafull-header__cta">Получить расчёт</a>
+    </div>
+    <button type="button" class="dafull-header__burger" aria-label="Меню" id="dafull-header-burger">
+      <span></span>
+    </button>
+  </div>
+  <div class="dafull-header__dropdown" id="dafull-header-dropdown">
+    <nav class="dafull-header__dropdown-nav">
+      <a href="#rec1947644431">Услуги</a>
+      <a href="#rec1947644431">Кейсы</a>
+      <a href="#rec1947644431">Стоимость</a>
+      <a href="#rec1947644431">FAQ</a>
+    </nav>
+    <a href="#rec1947644431" class="dafull-header__dropdown-cta">Получить расчёт</a>
+  </div>
+</header>
+<div class="dafull-header__spacer" aria-hidden="true"></div>
+</div>
+
+<div class="dafull-quiz-popup" id="dafull-quiz-popup" aria-hidden="true">
+  <div class="dafull-quiz-popup__backdrop" aria-label="Закрыть"></div>
+  <div class="dafull-quiz-popup__box">
+    <button type="button" class="dafull-quiz-popup__close" id="dafull-quiz-popup-close" aria-label="Закрыть">×</button>
+    <div class="dafull-quiz-popup__content"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var logo = document.querySelector('.dafull-header__logo');
+  if (logo) {
+    var img = logo.querySelector('img');
+    if (img) {
+      if (img.complete && img.naturalHeight) {
+        logo.classList.add('has-img');
+      } else {
+        img.addEventListener('load', function() { logo.classList.add('has-img'); });
+      }
+    }
+  }
+
+  var header = document.getElementById('header');
+  var btn = document.getElementById('dafull-header-burger');
+  var menu = document.getElementById('dafull-header-dropdown');
+  var scrollThreshold = 30;
+
+  function onScroll() {
+    if (header) {
+      if (window.pageYOffset > scrollThreshold) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    }
+  }
+  if (header) {
+    if (window.pageYOffset > scrollThreshold) header.classList.add('is-scrolled');
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  if (btn && menu) {
+    btn.addEventListener('click', function() {
+      btn.classList.toggle('is-open');
+      menu.classList.toggle('is-open');
+    });
+    if (menu.querySelectorAll) {
+      menu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          btn.classList.remove('is-open');
+          menu.classList.remove('is-open');
+        });
+      });
+    }
+  }
+
+  var quizPopup = document.getElementById('dafull-quiz-popup');
+  if (quizPopup && quizPopup.parentNode && quizPopup.parentNode !== document.body) {
+    document.body.appendChild(quizPopup);
+  }
+  var quizPopupClose = document.getElementById('dafull-quiz-popup-close');
+  var quizPopupContent = quizPopup && quizPopup.querySelector('.dafull-quiz-popup__content');
+  var quizPopupBackdrop = quizPopup && quizPopup.querySelector('.dafull-quiz-popup__backdrop');
+  var quizOriginalParent = null;
+  var quizOriginalNext = null;
+
+  function findQuizBlock() {
+    return document.getElementById('rec1947644431')
+      || document.querySelector('[id="rec1947644431"]')
+      || document.querySelector('[id*="1947644431"]');
+  }
+
+  function closeQuizPopup() {
+    if (!quizPopup) return;
+    var quiz = findQuizBlock();
+    if (quiz && quizOriginalParent) {
+      var inPopup = quizPopupContent && quizPopupContent.contains(quiz);
+      if (inPopup) {
+        quiz.style.removeProperty('width');
+        quiz.style.removeProperty('max-width');
+        quiz.style.removeProperty('height');
+        quiz.style.removeProperty('margin');
+        quiz.style.removeProperty('left');
+        quiz.style.removeProperty('right');
+        quiz.style.removeProperty('transform');
+        quiz.style.removeProperty('transform-origin');
+        quiz.style.removeProperty('box-sizing');
+        if (quizOriginalNext) {
+          quizOriginalParent.insertBefore(quiz, quizOriginalNext);
+        } else {
+          quizOriginalParent.appendChild(quiz);
+        }
+      }
+    }
+    if (quizPopupContent) quizPopupContent.innerHTML = '';
+    quizOriginalParent = null;
+    quizOriginalNext = null;
+    quizPopup.classList.remove('is-open');
+    quizPopup.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function openQuizPopup() {
+    if (!quizPopup || !quizPopupContent) return;
+    quizPopupContent.innerHTML = '';
+    var quiz = findQuizBlock();
+    if (quiz) {
+      quizOriginalParent = quiz.parentNode;
+      quizOriginalNext = quiz.nextSibling;
+      var wrap = document.createElement('div');
+      wrap.className = 'dafull-quiz-popup__quiz-wrap';
+      wrap.style.width = '100%';
+      wrap.style.maxWidth = '100%';
+      wrap.style.margin = '0';
+      wrap.style.padding = '0';
+      wrap.style.boxSizing = 'border-box';
+      quiz.style.setProperty('margin', '0', 'important');
+      quiz.style.setProperty('left', '0', 'important');
+      quiz.style.setProperty('right', 'auto', 'important');
+      quiz.style.setProperty('box-sizing', 'border-box', 'important');
+      wrap.appendChild(quiz);
+      quizPopupContent.appendChild(wrap);
+      quizPopup.classList.add('is-open');
+      quizPopup.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function() {
+        var wrapW = wrap.clientWidth;
+        var quizW = quiz.scrollWidth;
+        var quizH = quiz.offsetHeight;
+        if (quizW > wrapW && wrapW > 0) {
+          var scale = wrapW / quizW;
+          var scaleBox = document.createElement('div');
+          scaleBox.className = 'dafull-quiz-popup__quiz-scale';
+          scaleBox.style.width = wrapW + 'px';
+          scaleBox.style.height = Math.ceil(quizH * scale) + 'px';
+          scaleBox.style.overflow = 'hidden';
+          scaleBox.style.margin = '0 auto';
+          wrap.insertBefore(scaleBox, quiz);
+          scaleBox.appendChild(quiz);
+          quiz.style.setProperty('transform', 'scale(' + scale + ')', 'important');
+          quiz.style.setProperty('transform-origin', '0 0', 'important');
+          quiz.style.setProperty('width', quizW + 'px', 'important');
+          quiz.style.setProperty('height', quizH + 'px', 'important');
+        } else {
+          quiz.style.setProperty('width', '100%', 'important');
+          quiz.style.setProperty('max-width', '100%', 'important');
+        }
+      });
+    } else {
+      quizPopupContent.innerHTML = '<div style="padding:24px;text-align:center;color:#4A4F5C;"><p style="margin:0 0 12px;font-size:17px;">На странице не найден блок квиза.</p><p style="margin:0;font-size:14px;">В Tilda задайте блоку с квизом <strong>ID: rec1947644431</strong>.</p></div>';
+      quizPopup.classList.add('is-open');
+      quizPopup.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href="#rec1947644431"], a[href*="rec1947644431"]');
+    if (link) {
+      e.preventDefault();
+      e.stopPropagation();
+      openQuizPopup();
+      return false;
+    }
+  }, true);
+
+  if (quizPopupClose) quizPopupClose.addEventListener('click', closeQuizPopup);
+  if (quizPopupBackdrop) quizPopupBackdrop.addEventListener('click', closeQuizPopup);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && quizPopup && quizPopup.classList.contains('is-open')) {
+      closeQuizPopup();
+    }
+  });
+})();
+</script>

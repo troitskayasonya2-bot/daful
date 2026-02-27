@@ -1,0 +1,165 @@
+<!-- ==============================================
+     БЛОК 7 — Стоимость (от 18–25 ₽/шт + CTA)
+     Вставка: Tilda Zero Block или HTML-блок
+     ============================================== -->
+
+<style>
+.dafull-pricing {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #FAFAFA;
+  color: #13161F;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 64px 24px 72px;
+  position: relative;
+}
+.dafull-pricing__inner {
+  box-sizing: border-box;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 0 16px;
+}
+.dafull-pricing__head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.dafull-pricing__title {
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #13161F;
+  margin: 0 0 12px;
+}
+.dafull-pricing__subtitle {
+  font-size: 17px;
+  line-height: 1.5;
+  color: #4A4F5C;
+  margin: 0;
+}
+.dafull-pricing__card {
+  box-sizing: border-box;
+  min-width: 0;
+  background: #fff;
+  border-radius: 24px;
+  padding: 44px 40px 44px;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 8px 32px rgba(19, 22, 31, 0.06);
+  text-align: center;
+}
+.dafull-pricing__price-wrap {
+  margin-bottom: 28px;
+}
+.dafull-pricing__price {
+  font-size: clamp(42px, 6vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #13161F;
+}
+.dafull-pricing__price span {
+  color: #FF6300;
+}
+.dafull-pricing__price-note {
+  font-size: 15px;
+  font-weight: 500;
+  color: #6B7280;
+  margin-top: 8px;
+}
+.dafull-pricing__includes {
+  text-align: left;
+  max-width: 400px;
+  margin: 0 auto 32px;
+}
+.dafull-pricing__includes-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+.dafull-pricing__includes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dafull-pricing__includes-list li {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #374151;
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.dafull-pricing__includes-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #023A11;
+  font-weight: 700;
+  font-size: 14px;
+}
+.dafull-pricing__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 40px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  background: #FF6300;
+  text-decoration: none;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.dafull-pricing__cta:hover {
+  background: #E55800;
+  box-shadow: 0 8px 24px rgba(255, 99, 0, 0.4);
+  transform: translateY(-2px);
+  color: #fff;
+}
+.dafull-pricing__hint {
+  font-size: 14px;
+  color: #6B7280;
+  margin-top: 16px;
+}
+@media (max-width: 600px) {
+  .dafull-pricing { padding: 48px 16px 56px; }
+  .dafull-pricing__inner { padding: 0; }
+  .dafull-pricing__head { margin-bottom: 32px; }
+  .dafull-pricing__card { padding: 32px 24px; }
+}
+</style>
+
+<section class="dafull-pricing" id="pricing">
+  <div class="dafull-pricing__inner">
+    <div class="dafull-pricing__head">
+      <h2 class="dafull-pricing__title">Стоимость фулфилмента</h2>
+      <p class="dafull-pricing__subtitle">Прозрачные цены. Точный расчёт — под ваш объём и тип товаров.</p>
+    </div>
+    <div class="dafull-pricing__card">
+      <div class="dafull-pricing__price-wrap">
+        <div class="dafull-pricing__price">от <span>18</span>–<span>25</span> ₽/шт</div>
+        <div class="dafull-pricing__price-note">за единицу с учётом приёмки, хранения, маркировки и отгрузки</div>
+      </div>
+      <div class="dafull-pricing__includes">
+        <div class="dafull-pricing__includes-title">В расчёт входит</div>
+        <ul class="dafull-pricing__includes-list">
+          <li>Приёмка и проверка товара</li>
+          <li>Маркировка по ТЗ маркетплейсов</li>
+          <li>Хранение на складе</li>
+          <li>Упаковка и отгрузка</li>
+        </ul>
+      </div>
+      <a href="#rec1947644431" class="dafull-pricing__cta">Получить точный расчёт</a>
+      <p class="dafull-pricing__hint">Ответьте на 3–4 вопроса в квизе — расчёт за 2 минуты</p>
+    </div>
+  </div>
+</section>

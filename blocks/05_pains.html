@@ -1,0 +1,186 @@
+<!-- ==============================================
+     БЛОК 5 — Боли (почему теряют деньги → как DaFull решает)
+     Вставка: Tilda Zero Block или HTML-блок
+     ============================================== -->
+
+<style>
+.dafull-pains {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #FAFAFA;
+  color: #13161F;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 64px 24px 72px;
+  position: relative;
+}
+.dafull-pains__inner {
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 0 16px;
+}
+.dafull-pains__head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+.dafull-pains__title {
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #13161F;
+  margin: 0 0 12px;
+}
+.dafull-pains__subtitle {
+  font-size: 17px;
+  line-height: 1.5;
+  color: #4A4F5C;
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dafull-pains__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.dafull-pains__card {
+  box-sizing: border-box;
+  min-width: 0;
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 24px 28px 32px;
+  border: 1px solid #E5E7EB;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.dafull-pains__card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #B91C1C 0%, rgba(185, 28, 28, 0.4) 100%);
+  border-radius: 4px 0 0 4px;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+.dafull-pains__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(19, 22, 31, 0.08);
+  border-color: rgba(2, 58, 17, 0.2);
+}
+.dafull-pains__card:hover::before {
+  width: 6px;
+  background: linear-gradient(180deg, #023A11 0%, rgba(2, 58, 17, 0.6) 100%);
+}
+.dafull-pains__pain {
+  font-size: 15px;
+  font-weight: 600;
+  color: #B91C1C;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dafull-pains__pain-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background: rgba(185, 28, 28, 0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.dafull-pains__card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #13161F;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+.dafull-pains__solution {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #023A11;
+  font-weight: 500;
+  margin: 0;
+}
+.dafull-pains__cta {
+  text-align: center;
+  margin-top: 40px;
+}
+.dafull-pains__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #FF6300;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.dafull-pains__cta-btn:hover {
+  background: #E55800;
+  box-shadow: 0 6px 20px rgba(255, 99, 0, 0.35);
+  transform: translateY(-2px);
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .dafull-pains { padding: 48px 16px 56px; }
+  .dafull-pains__inner { padding: 0; }
+  .dafull-pains__head { margin-bottom: 32px; }
+  .dafull-pains__grid { gap: 16px; }
+  .dafull-pains__card { padding: 24px 20px 24px 28px; }
+}
+</style>
+
+<section class="dafull-pains" id="pains">
+  <div class="dafull-pains__inner">
+    <div class="dafull-pains__head">
+      <h2 class="dafull-pains__title">Почему теряют деньги на маркетплейсах</h2>
+      <p class="dafull-pains__subtitle">Частые проблемы продавцов — и как мы их снимаем.</p>
+    </div>
+    <div class="dafull-pains__grid">
+      <div class="dafull-pains__card">
+        <div class="dafull-pains__pain">
+          <span class="dafull-pains__pain-icon">!</span>
+          Штрафы
+        </div>
+        <h3 class="dafull-pains__card-title">Штрафы за неверную маркировку</h3>
+        <p class="dafull-pains__solution">Работаем строго по ТЗ WB и Ozon — маркировка, упаковка и документы без ошибок. Вы не платите штрафы.</p>
+      </div>
+      <div class="dafull-pains__card">
+        <div class="dafull-pains__pain">
+          <span class="dafull-pains__pain-icon">!</span>
+          Задержки
+        </div>
+        <h3 class="dafull-pains__card-title">Задержки отгрузки и падение выдачи</h3>
+        <p class="dafull-pains__solution">Отгрузка день в день. Товар быстрее попадает на полку маркетплейса — карточка не проседает в поиске.</p>
+      </div>
+      <div class="dafull-pains__card">
+        <div class="dafull-pains__pain">
+          <span class="dafull-pains__pain-icon">!</span>
+          Возвраты
+        </div>
+        <h3 class="dafull-pains__card-title">Возвраты и претензии из-за качества</h3>
+        <p class="dafull-pains__solution">Контроль при приёмке: брак отсекаем до отгрузки. Меньше возвратов — выше рейтинг и доверие покупателей.</p>
+      </div>
+    </div>
+    <div class="dafull-pains__cta">
+      <a href="#rec1947644431" class="dafull-pains__cta-btn">Рассчитать стоимость и перестать терять</a>
+    </div>
+  </div>
+</section>
