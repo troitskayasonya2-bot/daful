@@ -1,0 +1,124 @@
+<style>
+/* 1. ГЛОБАЛЬНЫЕ НАСТРОЙКИ (ЧТОБЫ НИЧЕГО НЕ ПРОПАДАЛО) */
+.t-records, .t-rec, #allrecords {
+    overflow: visible !important; /* Разрешаем блокам выходить за свои границы */
+}
+
+/* 2. ТРАПЕЦИЯ (#rec1976606281) */
+#rec1976606281 {
+    display: block !important;
+    position: relative;
+    z-index: 1000 !important;
+    transform: translateY(-380px) !important; /* Твоя идеальная высота */
+    margin-bottom: -380px !important;
+}
+
+#rec1976606281 .t396__artboard {
+    width: 100vw !important;
+    max-width: none !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+[data-elem-id="1772312508987000001"], [data-elem-id="1772312508987000001"] img {
+    width: 100vw !important;
+    position: absolute !important;
+    left: 0 !important;
+}
+
+/* Центрируем текст трапеции по твоим сеткам */
+#rec1976606281 [data-elem-id="1772312544256"], 
+#rec1976606281 [data-elem-id="1772312925518000004"], 
+#rec1976606281 [data-elem-id="1772312867559000003"], 
+#rec1976606281 [data-elem-id="1772312755184000002"] {
+    left: calc(50% - 580px) !important;
+}
+
+#rec1976606281 [data-elem-id="1772313336378000007"],
+#rec1976606281 [data-elem-id="1772313251761000005"],
+#rec1976606281 [data-elem-id="1772313357210000008"] {
+    left: auto !important;
+    right: calc(50% - 580px) !important;
+}
+
+#rec1976606281 .tn-atom { font-family: 'Unbounded', sans-serif !important; }
+#rec1976606281 [data-elem-id="1772313336378000007"] .tn-atom { font-size: 80px !important; color: #FF6300 !important; font-weight: 800 !important; }
+
+/* 3. БОЛИ СЕЛЛЕРОВ (#daf-pain-trendy) */
+#daf-pain-trendy {
+    background-color: #FAFAFA !important;
+    position: relative;
+    z-index: 500 !important; /* Чуть ниже трапеции */
+    margin-top: -100px !important; /* ПОДНЯЛИ ЕЩЕ ВЫШЕ К ТРАПЕЦИИ */
+    padding: 160px 20px 100px 20px !important;
+    font-family: 'Unbounded', sans-serif;
+}
+
+.daf-tr-container { max-width: 1240px; margin: 0 auto; }
+.daf-tr-header { text-align: center; margin-bottom: 60px; }
+.daf-tr-title { font-size: 40px; font-weight: 800; color: #0F172A; line-height: 1.2; }
+.daf-tr-title span { color: #FF6300; }
+.daf-tr-subtitle { font-size: 17px; color: #64748B; max-width: 800px; margin: 20px auto 0; line-height: 1.6; }
+
+/* Сетка карточек */
+.daf-pi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.daf-pi-item {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 20px;
+    padding: 30px;
+    transition: 0.3s;
+}
+.daf-pi-item:hover { transform: translateY(-10px); border-color: #FF6300; }
+.daf-pi-icon-wrap { width: 50px; height: 50px; background: rgba(255, 99, 0, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.daf-pi-icon-wrap svg { width: 24px; height: 24px; stroke: #FF6300; fill: none; stroke-width: 2; }
+.daf-pi-name { font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 10px; }
+.daf-pi-text { font-size: 14px; color: #64748B; line-height: 1.5; }
+
+@media (max-width: 960px) {
+    .daf-pi-grid { grid-template-columns: 1fr 1fr; }
+    #rec1976606281 { transform: translateY(-150px) !important; margin-bottom: -150px !important; }
+}
+</style>
+
+<section id="daf-pain-trendy">
+    <div class="daf-tr-container">
+        <div class="daf-tr-header">
+            <h2 class="daf-tr-title">Ошибки логистики: где селлеры<br><span>теряют деньги</span> на маркетплейсах</h2>
+            <p class="daf-tr-subtitle">Разбираем главные причины штрафов и&nbsp;блокировок на&nbsp;Wildberries и&nbsp;Ozon, и&nbsp;показываем, как&nbsp;наш фулфилмент навсегда закрывает эти&nbsp;риски.</p>
+        </div>
+        <div class="daf-pi-grid">
+            <div class="daf-pi-item">
+                <div class="daf-pi-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18m6-18v18M3 9h18M3 15h18"/></svg></div>
+                <h3 class="daf-pi-name">Обезличка и штрафы</h3>
+                <p class="daf-pi-text">Упакуем по ТЗ. Никаких возвратов из-за нечитаемых штрихкодов.</p>
+            </div>
+            <div class="daf-pi-item">
+                <div class="daf-pi-icon-wrap"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                <h3 class="daf-pi-name">Срыв сроков</h3>
+                <p class="daf-pi-text">Собственный автопарк. Отгружаем день в день, удерживая карточку в ТОПе.</p>
+            </div>
+            <div class="daf-pi-item">
+                <div class="daf-pi-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+                <h3 class="daf-pi-name">Скрытые комиссии</h3>
+                <p class="daf-pi-text">Фиксируем цены в договоре. Вы не платите за «дополнительные услуги».</p>
+            </div>
+            <div class="daf-pi-item">
+                <div class="daf-pi-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
+                <h3 class="daf-pi-name">Потеря товара</h3>
+                <p class="daf-pi-text">Адресное хранение и сканирование. 0% пересортицы и недостач.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var refresh = function() {
+        window.dispatchEvent(new Event('resize'));
+        if (window.t396_doResize) t396_doResize('1976606281');
+    };
+    setTimeout(refresh, 500);
+    setTimeout(refresh, 1500);
+});
+</script>

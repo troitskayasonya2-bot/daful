@@ -1,0 +1,353 @@
+<style>
+/* =========================================
+   БЛОК: ЦЕНЫ + КВИЗ (PREMIUM AURORA & GLASS)
+   ========================================= */
+
+#rec1947644431, #rec1947644431 *,
+#rec1947644431 *::before, #rec1947644431 *::after {
+    box-sizing: border-box !important;
+}
+
+.daf-quiz-section {
+    background-color: #0A0C10 !important; 
+    padding: 100px 20px 120px;
+    font-family: 'Bounded', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+    z-index: 30; 
+    border-radius: 40px 40px 0 0;
+    margin-top: -40px !important; 
+    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+}
+
+/* --- ФОНОВЫЕ ЭЛЕМЕНТЫ --- */
+.daf-quiz-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
+    z-index: 1;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+}
+
+.daf-glow-orange {
+    position: absolute;
+    top: -20%; left: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255, 99, 0, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0; pointer-events: none;
+    animation: floatGlow 12s infinite alternate ease-in-out;
+}
+.daf-glow-green {
+    position: absolute;
+    bottom: -20%; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: 0; pointer-events: none;
+    animation: floatGlow 15s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes floatGlow {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 30px) scale(1.1); }
+}
+
+.daf-quiz-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 5; 
+}
+
+/* --- ЛЕВАЯ ЧАСТЬ (ОФФЕР) --- */
+.daf-quiz-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 30px;
+}
+/* ДОБАВЛЕН ЦВЕТ ДЛЯ СЛОВА В ЗАГОЛОВКЕ */
+.daf-quiz-title span {
+    color: #FF6300;
+}
+
+.daf-price-hook {
+    background: rgba(255, 99, 0, 0.05);
+    border-left: 3px solid #FF6300;
+    padding: 24px;
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 30px;
+}
+.daf-price-main {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+}
+.daf-price-desc {
+    font-size: 15px;
+    color: #D1D5DB;
+    line-height: 1.5;
+    text-wrap: pretty;
+}
+.daf-quiz-bullets {
+    list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;
+}
+.daf-quiz-bullets li {
+    font-size: 15px; color: #D1D5DB; display: flex; align-items: center; gap: 12px; font-weight: 500;
+}
+.daf-quiz-bullets svg {
+    width: 20px; height: 20px; fill: none; stroke: #10B981; stroke-width: 2.5; stroke-linecap: round; flex-shrink: 0;
+}
+
+/* --- ПРАВАЯ ЧАСТЬ: ФОРМА КВИЗА --- */
+.daf-quiz-widget {
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 28px;
+    padding: 50px 40px; 
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 99, 0, 0.1);
+    position: relative;
+    width: 100%; 
+}
+
+.daf-quiz-form { position: relative; z-index: 1; }
+
+.daf-progress-bar {
+    width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px; margin-bottom: 30px; overflow: hidden;
+}
+.daf-progress-fill {
+    height: 100%; width: 20%; background: #FF6300;
+    border-radius: 10px; transition: width 0.4s ease-out;
+}
+
+.daf-quiz-step { display: none; }
+.daf-quiz-step.active { display: block; animation: stepFade 0.4s ease-out; }
+
+@keyframes stepFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.daf-question-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px; font-weight: 700; margin-bottom: 30px; line-height: 1.3;
+}
+
+.daf-options-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+.daf-option-label {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;
+    cursor: pointer; transition: 0.3s; font-weight: 500;
+}
+.daf-option-label:hover { border-color: rgba(255, 99, 0, 0.4); background: rgba(255, 255, 255, 0.06); }
+.daf-option-input { display: none; }
+
+.daf-radio-circle {
+    width: 20px; height: 20px; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+.daf-radio-circle::after {
+    content: ''; width: 10px; height: 10px; background: #FF6300;
+    border-radius: 50%; transform: scale(0); transition: 0.2s;
+}
+.daf-option-input:checked + .daf-option-label { border-color: #FF6300; background: rgba(255, 99, 0, 0.08); }
+.daf-option-input:checked + .daf-option-label .daf-radio-circle { border-color: #FF6300; }
+.daf-option-input:checked + .daf-option-label .daf-radio-circle::after { transform: scale(1); }
+
+.daf-input-text {
+    width: 100%; background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 18px 20px; border-radius: 12px;
+    color: #FFFFFF; font-family: 'Bounded', sans-serif; font-size: 16px;
+    transition: 0.3s; margin-bottom: 20px; display: block;
+}
+.daf-input-text:focus { outline: none; border-color: #FF6300; background: rgba(255, 255, 255, 0.06); }
+
+.daf-btn-wrap { width: 100%; display: flex; justify-content: center; margin-top: 10px; }
+
+.daf-quiz-btn {
+    background: #FF6300; color: #FFFFFF;
+    font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 700;
+    padding: 18px 40px; border: none; border-radius: 100px;
+    cursor: pointer; transition: background 0.3s, transform 0.1s;
+    width: 100%; display: block; box-shadow: 0 10px 20px rgba(255, 99, 0, 0.2);
+}
+.daf-quiz-btn:hover { background: #E55800; transform: translateY(-2px); box-shadow: 0 12px 25px rgba(255, 99, 0, 0.3); }
+.daf-quiz-btn:disabled { background: #262930; color: #6B7280; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.daf-btn-back {
+    background: transparent; color: #6B7280; font-family: 'Bounded', sans-serif;
+    font-size: 13px; border: none; cursor: pointer; padding: 10px;
+    margin-top: 10px; display: inline-flex; align-items: center; gap: 5px;
+    transition: color 0.2s; font-weight: 600;
+}
+.daf-btn-back:hover { color: #FFFFFF; }
+
+.daf-final-note {
+    font-size: 12px; color: #9CA3AF; text-align: center; margin-top: 20px; line-height: 1.4;
+}
+
+@media (max-width: 980px) {
+    .daf-quiz-section { border-radius: 24px 24px 0 0; margin-top: -24px !important; padding: 60px 16px; }
+    .daf-quiz-container { grid-template-columns: 1fr; gap: 40px; }
+    .daf-quiz-widget { padding: 30px 20px; border-radius: 20px; }
+    .daf-question-title { font-size: 20px; }
+    .daf-quiz-title { font-size: 32px; }
+}
+</style>
+
+<section class="daf-quiz-section" id="rec1947644431">
+    
+    <div class="daf-glow-orange"></div>
+    <div class="daf-glow-green"></div>
+
+    <div class="daf-quiz-container">
+        
+        <div class="daf-quiz-info">
+            <h2 class="daf-quiz-title">Сколько стоит <span>фулфилмент?</span></h2>
+            
+            <div class="daf-price-hook">
+                <div class="daf-price-main">от&nbsp;18–25&nbsp;₽&nbsp;/&nbsp;шт.</div>
+                <div class="daf-price-desc">На&nbsp;партию 500&nbsp;ед. Итоговая стоимость зависит от&nbsp;габаритов и&nbsp;категории вашего товара.</div>
+            </div>
+
+            <ul class="daf-quiz-bullets">
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Точный расчёт за&nbsp;10&nbsp;минут</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Фиксируем цены в&nbsp;договоре</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Никаких скрытых платежей</li>
+            </ul>
+        </div>
+
+        <div class="daf-quiz-widget">
+            <div class="daf-progress-bar">
+                <div class="daf-progress-fill" id="dafProgress"></div>
+            </div>
+            
+            <form id="dafulQuizForm" class="daf-quiz-form" onsubmit="event.preventDefault(); alert('Тут будет отправка в CRM!');">
+                
+                <div class="daf-quiz-step active" data-step="1">
+                    <div class="daf-question-title">С&nbsp;каким маркетплейсом вы&nbsp;работаете?</div>
+                    <div class="daf-options-grid">
+                        <input type="radio" name="marketplace" id="mp_wb" value="Wildberries" class="daf-option-input">
+                        <label for="mp_wb" class="daf-option-label">Wildberries <div class="daf-radio-circle"></div></label>
+                        
+                        <input type="radio" name="marketplace" id="mp_ozon" value="Ozon" class="daf-option-input">
+                        <label for="mp_ozon" class="daf-option-label">Ozon <div class="daf-radio-circle"></div></label>
+                    </div>
+                </div>
+
+                <div class="daf-quiz-step" data-step="2">
+                    <div class="daf-question-title">Какой формат отгрузки нужен?</div>
+                    <div class="daf-options-grid">
+                        <input type="radio" name="format" id="fmt_fbo" value="FBO" class="daf-option-input">
+                        <label for="fmt_fbo" class="daf-option-label">Только FBO <div class="daf-radio-circle"></div></label>
+                        
+                        <input type="radio" name="format" id="fmt_fbs" value="FBS" class="daf-option-input">
+                        <label for="fmt_fbs" class="daf-option-label">Только FBS <div class="daf-radio-circle"></div></label>
+                    </div>
+                    <button type="button" class="daf-btn-back" onclick="prevStep(1)">← Назад</button>
+                </div>
+
+                <div class="daf-quiz-step" data-step="3">
+                    <div class="daf-question-title">Какой объём в&nbsp;месяц?</div>
+                    <div class="daf-options-grid">
+                        <input type="radio" name="volume" id="vol_1" value="До 500" class="daf-option-input">
+                        <label for="vol_1" class="daf-option-label">До 500 ед. <div class="daf-radio-circle"></div></label>
+                        
+                        <input type="radio" name="volume" id="vol_2" value="500+" class="daf-option-input">
+                        <label for="vol_2" class="daf-option-label">Более 500 ед. <div class="daf-radio-circle"></div></label>
+                    </div>
+                    <button type="button" class="daf-btn-back" onclick="prevStep(2)">← Назад</button>
+                </div>
+
+                <div class="daf-quiz-step" data-step="4">
+                    <div class="daf-question-title">Укажите категорию товара</div>
+                    <input type="text" name="category" id="cat_input" class="daf-input-text" placeholder="Одежда, посуда, электроника..." required>
+                    
+                    <div class="daf-btn-wrap">
+                        <button type="button" class="daf-quiz-btn" id="btnNext4" onclick="nextStep(5)" disabled>Далее</button>
+                    </div>
+                    <button type="button" class="daf-btn-back" onclick="prevStep(3)">← Назад</button>
+                </div>
+
+                <div class="daf-quiz-step" data-step="5">
+                    <div class="daf-question-title">Куда прислать точный расчёт?</div>
+                    <input type="tel" name="phone" id="phone_input" class="daf-input-text" placeholder="+7 (___) ___-__-__" required>
+                    
+                    <div class="daf-btn-wrap">
+                        <button type="submit" class="daf-quiz-btn" id="btnSubmit" disabled>Получить расчёт за 10 минут</button>
+                    </div>
+                    <button type="button" class="daf-btn-back" onclick="prevStep(4)">← Назад</button>
+                    <div class="daf-final-note">Оставьте номер, наш менеджер свяжется с&nbsp;вами для&nbsp;обсуждения деталей. Ваши данные в&nbsp;безопасности.</div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<script>
+const totalSteps = 5;
+const progressBar = document.getElementById('dafProgress');
+
+function updateProgress(step) {
+    const percentage = (step / totalSteps) * 100;
+    progressBar.style.width = percentage + '%';
+}
+
+function nextStep(step) {
+    document.querySelectorAll('.daf-quiz-step').forEach(el => el.classList.remove('active'));
+    document.querySelector(`.daf-quiz-step[data-step="${step}"]`).classList.add('active');
+    updateProgress(step);
+}
+
+function prevStep(step) {
+    document.querySelectorAll('.daf-quiz-step').forEach(el => el.classList.remove('active'));
+    document.querySelector(`.daf-quiz-step[data-step="${step}"]`).classList.add('active');
+    updateProgress(step);
+}
+
+document.querySelectorAll('input[name="marketplace"]').forEach(radio => {
+    radio.addEventListener('change', () => setTimeout(() => nextStep(2), 250));
+});
+document.querySelectorAll('input[name="format"]').forEach(radio => {
+    radio.addEventListener('change', () => setTimeout(() => nextStep(3), 250));
+});
+document.querySelectorAll('input[name="volume"]').forEach(radio => {
+    radio.addEventListener('change', () => setTimeout(() => nextStep(4), 250));
+});
+
+const catInput = document.getElementById('cat_input');
+const btnNext4 = document.getElementById('btnNext4');
+catInput.addEventListener('input', function() {
+    btnNext4.disabled = this.value.trim().length < 2;
+});
+
+const phoneInput = document.getElementById('phone_input');
+const btnSubmit = document.getElementById('btnSubmit');
+phoneInput.addEventListener('input', function() {
+    btnSubmit.disabled = this.value.trim().length < 10;
+});
+</script>

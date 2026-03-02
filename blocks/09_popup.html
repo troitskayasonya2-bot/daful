@@ -1,0 +1,227 @@
+<style>
+/* =========================================
+   COMPACT & ANIMATED POP-UP (1240px)
+   ========================================= */
+
+#dafPopupWrapper, #dafPopupWrapper * {
+    box-sizing: border-box !important;
+    outline: none;
+}
+
+/* ОВЕРЛЕЙ (Теперь полупрозрачный и анимированный) */
+.daf-fixed-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* ИЗМЕНЕНО: Полупрозрачность + Размытие (Glassmorphism) */
+    background: rgba(10, 12, 16, 0.7) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    z-index: 1000000 !important;
+    display: none; /* Контролируется через JS */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Bounded', sans-serif;
+    
+    /* Для плавного появления фона */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Класс для плавного показа фона */
+.daf-fixed-overlay.is-visible {
+    opacity: 1;
+}
+
+/* ВИДЖЕТ (Анимация всплытия) */
+.daf-fixed-widget {
+    background: #0A0C10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    width: 100%;
+    max-width: 1240px;
+    height: 560px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+    
+    /* ИЗМЕНЕНО: Стартовая позиция для анимации (смещен вниз и уменьшен) */
+    transform: translateY(30px) scale(0.96);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Класс для всплытия самого окна */
+.daf-fixed-overlay.is-visible .daf-fixed-widget {
+    transform: translateY(0) scale(1);
+}
+
+/* ... остальной дизайн без изменений ... */
+
+.daf-info-panel { flex: 0 0 420px; padding: 60px 40px; background: linear-gradient(135deg, rgba(255, 99, 0, 0.05) 0%, transparent 100%); border-right: 1px solid rgba(255, 255, 255, 0.05); display: flex; flex-direction: column; justify-content: center; }
+.daf-info-title { font-family: 'Unbounded', sans-serif; font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
+.daf-info-title span { color: #FF6300; }
+.daf-info-hook { border-left: 3px solid #FF6300; padding-left: 20px; }
+.daf-info-price { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+
+.daf-quiz-panel { flex: 1; padding: 40px 60px; background: #0D0F14; display: flex; flex-direction: column; justify-content: center; position: relative; }
+.daf-step-box { display: none; }
+.daf-step-box.is-active { display: block !important; animation: dafFadeIn 0.4s ease forwards; }
+
+@keyframes dafFadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+.daf-q-text { font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 35px; }
+.daf-opt-item { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; margin-bottom: 12px; cursor: pointer; transition: 0.3s; }
+.daf-opt-item:hover { border-color: #FF6300; background: rgba(255, 99, 0, 0.05); }
+.daf-real-radio { display: none; }
+.daf-real-radio:checked + .daf-opt-item { border-color: #FF6300; background: rgba(255, 99, 0, 0.1); }
+.daf-input-main { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 16px; color: #fff; font-size: 18px; font-family: 'Bounded', sans-serif; margin-bottom: 20px; }
+.daf-btn-next { background: #FF6300; color: #fff; font-family: 'Unbounded', sans-serif; padding: 22px; border-radius: 100px; border: none; cursor: pointer; width: 100%; font-size: 15px; font-weight: 700; transition: 0.3s; }
+.daf-btn-next:disabled { background: #262930; color: #6B7280; cursor: not-allowed; }
+
+#dafSuccess { display: none; flex-direction: column; align-items: center; text-align: center; }
+.daf-icon-ok { width: 80px; height: 80px; background: #10B981; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 0 30px rgba(16, 185, 129, 0.3); }
+
+.daf-close-x { position: absolute; top: 25px; right: 25px; width: 44px; height: 44px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; transition: all 0.3s ease; }
+.daf-close-x:hover { background: rgba(255, 255, 255, 0.1); transform: rotate(90deg); }
+
+@media (max-width: 1024px) { .daf-fixed-widget { flex-direction: column; height: auto; max-height: 90vh; overflow-y: auto; border-radius: 24px; } .daf-info-panel { display: none; } .daf-quiz-panel { padding: 40px 24px; } }
+</style>
+
+<div class="daf-fixed-overlay" id="dafModal">
+    <div id="dafPopupWrapper" class="daf-fixed-widget">
+        
+        <div class="daf-close-x" onclick="closeDafModal()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </div>
+
+        <div class="daf-info-panel" id="dafLeft">
+            <h2 class="daf-info-title">Сколько стоит <span>фулфилмент?</span></h2>
+            <div class="daf-info-hook">
+                <div class="daf-info-price">от 18–25 ₽ / шт.</div>
+                <div class="daf-info-desc">Рассчитаем точную смету вашего проекта за&nbsp;10&nbsp;минут. Никаких скрытых платежей.</div>
+            </div>
+        </div>
+
+        <div class="daf-quiz-panel">
+            <form id="dafActualForm" onsubmit="handleDafSubmit(event)">
+                <div class="daf-step-box is-active" data-step="1">
+                    <div class="daf-q-text">Где вы&nbsp;продаёте?</div>
+                    <input type="radio" name="marketplace" id="r_wb" class="daf-real-radio" onchange="goDaf(2)">
+                    <label for="r_wb" class="daf-opt-item">Wildberries <span>→</span></label>
+                    <input type="radio" name="marketplace" id="r_oz" class="daf-real-radio" onchange="goDaf(2)">
+                    <label for="r_oz" class="daf-opt-item">Ozon <span>→</span></label>
+                </div>
+                <div class="daf-step-box" data-step="2">
+                    <div class="daf-q-text">Формат отгрузки?</div>
+                    <input type="radio" name="format" id="r_fbo" class="daf-real-radio" onchange="goDaf(3)">
+                    <label for="r_fbo" class="daf-opt-item">FBO (на склад маркетплейса)</label>
+                    <input type="radio" name="format" id="r_fbs" class="daf-real-radio" onchange="goDaf(3)">
+                    <label for="r_fbs" class="daf-opt-item">FBS (с нашего склада)</label>
+                    <div style="margin-top:20px; cursor:pointer; color:#6B7280; font-size:13px;" onclick="goDaf(1)">← Назад</div>
+                </div>
+                <div class="daf-step-box" data-step="3">
+                    <div class="daf-q-text">Категория товара?</div>
+                    <input type="text" id="daf_v_cat" class="daf-input-main" placeholder="Например: Электроника">
+                    <button type="button" class="daf-btn-next" id="daf_n3" onclick="goDaf(4)" disabled>Далее</button>
+                    <div style="margin-top:20px; cursor:pointer; color:#6B7280; font-size:13px;" onclick="goDaf(2)">← Назад</div>
+                </div>
+                <div class="daf-step-box" data-step="4">
+                    <div class="daf-q-text">Ваш номер телефона</div>
+                    <input type="tel" id="daf_v_phone" class="daf-input-main" placeholder="+7 (___) ___-__-__">
+                    <button type="submit" class="daf-btn-next" id="daf_n4" disabled>Получить расчет</button>
+                    <div style="margin-top:20px; cursor:pointer; color:#6B7280; font-size:13px;" onclick="goDaf(3)">← Назад</div>
+                </div>
+            </form>
+
+            <div id="dafSuccess">
+                <div class="daf-icon-ok">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3 style="font-family:'Unbounded', sans-serif; font-size:28px; margin-bottom:12px;">Заявка принята!</h3>
+                <p style="color:#9CA3AF; line-height:1.6; margin-bottom:32px;">Мы свяжемся с&nbsp;вами в&nbsp;течение 10&nbsp;минут.</p>
+                <button class="daf-btn-next" style="max-width:240px;" onclick="closeDafModal()">Вернуться на сайт</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ЛОГИКА ШАГОВ (Без изменений)
+function goDaf(n) {
+    document.querySelectorAll('.daf-step-box').forEach(s => s.classList.remove('is-active'));
+    document.querySelector(`.daf-step-box[data-step="${n}"]`).classList.add('is-active');
+}
+
+// ИСПРАВЛЕННАЯ ЛОГИКА ОТКРЫТИЯ (С анимацией)
+function openDafModal() {
+    const modal = document.getElementById('dafModal');
+    modal.style.display = 'flex'; // Сначала показываем блок
+    
+    // Используем setTimeout, чтобы браузер успел отрисовать display: flex, 
+    // и только потом запускаем CSS-анимацию через класс
+    setTimeout(() => {
+        modal.classList.add('is-visible');
+    }, 10);
+    
+    document.body.style.overflow = 'hidden';
+}
+
+// ИСПРАВЛЕННАЯ ЛОГИКА ЗАКРЫТИЯ (С обратной анимацией)
+function closeDafModal() {
+    const modal = document.getElementById('dafModal');
+    modal.classList.remove('is-visible'); // Сначала убираем классы анимации
+    
+    // Ждем окончания CSS-перехода (0.5s), прежде чем скрыть блок полностью
+    setTimeout(() => {
+        modal.style.display = 'none';
+        
+        // Сброс формы
+        goDaf(1);
+        document.getElementById('dafActualForm').style.display = 'block';
+        document.getElementById('dafSuccess').style.display = 'none';
+        document.getElementById('dafLeft').style.opacity = '1';
+    }, 500);
+    
+    document.body.style.overflow = '';
+}
+
+// Принудительный слушатель кнопок
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('a[href*="#quiz-open"]');
+    if (btn) {
+        e.preventDefault();
+        openDafModal();
+    }
+});
+
+// Закрытие по клику на фон
+document.getElementById('dafModal').addEventListener('click', function(e) {
+    if (e.target === this) closeDafModal();
+});
+
+// Валидация и телефон (Без изменений)
+const vCat = document.getElementById('daf_v_cat');
+const vPhone = document.getElementById('daf_v_phone');
+vCat.oninput = function() { document.getElementById('daf_n3').disabled = this.value.length < 2; };
+vPhone.onfocus = function() { if(!this.value) this.value = '+7 '; };
+vPhone.oninput = function() {
+    if(!this.value.startsWith('+')) this.value = '+7 ' + this.value;
+    document.getElementById('daf_n4').disabled = this.value.length < 11;
+};
+
+// Имитация отправки (Без изменений)
+function handleDafSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('daf_n4');
+    btn.innerHTML = 'Отправка...';
+    setTimeout(() => {
+        document.getElementById('dafActualForm').style.display = 'none';
+        document.getElementById('dafLeft').style.opacity = '0.2';
+        document.getElementById('dafSuccess').style.display = 'flex';
+    }, 1200);
+}
+</script>

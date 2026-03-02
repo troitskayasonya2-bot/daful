@@ -1,0 +1,206 @@
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================
+   БРОНЕБОЙНЫЕ СТИЛИ ШАПКИ
+========================================= */
+.daful-header-custom {
+    position: fixed !important;
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important;
+    z-index: 99999 !important;
+    background: rgba(10, 12, 16, 0.8) !important; 
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    transition: all 0.3s ease !important;
+}
+
+.daful-container-custom {
+    max-width: 1240px !important;
+    margin: 0 auto !important;
+    padding: 15px 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+/* ЛОГОТИП */
+.daful-logo-link {
+    display: flex !important;
+    align-items: center !important;
+    transition: transform 0.3s ease !important;
+}
+.daful-logo-link:hover { transform: scale(1.02) !important; }
+.daful-logo-img { height: 35px !important; width: auto !important; }
+
+/* МЕНЮ НАВИГАЦИИ */
+.daful-nav {
+    display: flex !important;
+    gap: 45px !important;
+    align-items: center !important;
+}
+
+/* СТИЛЬ ПУНКТОВ МЕНЮ (БЕЛЫЕ, КРУПНЫЕ) */
+.daful-nav a:not(.daful-btn) {
+    font-family: 'Unbounded', sans-serif !important;
+    color: #FFFFFF !important; 
+    text-decoration: none !important;
+    font-size: 16px !important; 
+    font-weight: 500 !important;
+    position: relative !important;
+    padding-bottom: 4px !important;
+    transition: color 0.3s ease !important; 
+}
+
+/* ЭФФЕКТ ПРИ НАВЕДЕНИИ: ОРАНЖЕВЫЙ ЦВЕТ */
+.daful-nav a:not(.daful-btn):hover {
+    color: #FF6300 !important; 
+}
+
+/* ЛИНИЯ ПРИ НАВЕДЕНИИ */
+.daful-nav a:not(.daful-btn)::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important; 
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 0 !important; 
+    height: 2px !important;
+    background: #FF6300 !important; 
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+.daful-nav a:not(.daful-btn):hover::after { width: 100% !important; }
+
+/* КНОПКА CTA В ШАПКЕ */
+.daful-btn {
+    font-family: 'Unbounded', sans-serif !important;
+    background: #FF6300 !important;
+    color: #FFFFFF !important;
+    padding: 14px 32px !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 15px rgba(255, 99, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+    z-index: 1 !important;
+}
+
+.daful-btn::before {
+    content: '' !important; position: absolute !important; top: 0 !important; left: -100% !important; width: 50% !important; height: 100% !important;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
+    transform: skewX(-20deg) !important; transition: all 0.5s ease !important; z-index: -1 !important;
+}
+
+.daful-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 22px rgba(255, 99, 0, 0.5) !important;
+}
+.daful-btn:hover::before { left: 150% !important; }
+
+/* БУРГЕР МЕНЮ (МОБИЛКИ) */
+.daful-burger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 100000;
+}
+.daful-burger span {
+    width: 28px; height: 2px; background: #FFFFFF; transition: all 0.3s ease;
+}
+
+@media (max-width: 980px) {
+    .daful-burger { display: flex !important; }
+    .daful-nav {
+        position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100vh !important;
+        background: rgba(10, 10, 10, 0.98) !important;
+        flex-direction: column !important; justify-content: center !important; gap: 30px !important;
+        opacity: 0; visibility: hidden; transition: all 0.4s ease !important;
+    }
+    .daful-nav.active { opacity: 1 !important; visibility: visible !important; }
+    .daful-nav a:not(.daful-btn) { font-size: 20px !important; }
+    .daful-desktop-btn { display: none !important; }
+    .daful-mobile-btn { display: inline-block !important; margin-top: 20px !important; }
+    
+    .daful-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
+    .daful-burger.open span:nth-child(2) { opacity: 0 !important; }
+    .daful-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
+}
+</style>
+
+<header class="daful-header-custom">
+    <div class="daful-container-custom">
+        <a href="/" class="daful-logo-link">
+            <img src="https://static.tildacdn.com/tild6435-3465-4263-b162-623136373531/ful.svg" alt="DaFUL Logo" class="daful-logo-img">
+        </a>
+        
+        <nav class="daful-nav" id="dafulNav">
+            <a href="#rec1951515961">Услуги</a>
+            <a href="#rec1973708281">Кейсы</a>
+            <a href="#rec1973729341">Стоимость</a>
+            <a href="#reviews">Отзывы</a>
+            
+            <a href="#rec1973729341" class="daful-btn daful-mobile-btn" style="display: none;">Получить расчет</a>
+        </nav>
+        
+        <a href="#rec1973729341" class="daful-btn daful-desktop-btn">Получить расчет</a>
+        
+        <div class="daful-burger" id="dafulBurger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</header>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const burger = document.getElementById('dafulBurger');
+    const nav = document.getElementById('dafulNav');
+    
+    if(burger && nav) {
+        // Логика открытия мобильного меню
+        burger.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            this.classList.toggle('open');
+            document.body.style.overflow = this.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // ПЛАВНАЯ ПРОКРУТКА К БЛОКАМ
+        document.querySelectorAll('.daful-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                // Проверяем, что это якорная ссылка
+                if(targetId && targetId.startsWith('#') && targetId.length > 1) {
+                    e.preventDefault(); // Отменяем стандартный резкий скачок
+                    
+                    // Закрываем мобильное меню, если оно было открыто
+                    nav.classList.remove('active');
+                    burger.classList.remove('open');
+                    document.body.style.overflow = '';
+
+                    // Находим нужный блок
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        // Высчитываем позицию с учетом высоты шапки (около 80px)
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        // Запускаем плавную прокрутку
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                }
+            });
+        });
+    }
+});
+</script>

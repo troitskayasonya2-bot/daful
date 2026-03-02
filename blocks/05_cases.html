@@ -1,0 +1,376 @@
+<style>
+/* =========================================
+   БЛОК: КЕЙСЫ (КОМПАКТНЫЙ + ТОПОГРАФИКА + CTA)
+   ========================================= */
+.daf-cases-section {
+    background-color: #F8F9FA; 
+    padding: 100px 20px;
+    font-family: 'Bounded', sans-serif;
+    color: #13161F;
+    position: relative;
+    overflow: hidden;
+    z-index: 20;
+}
+
+/* --- ПОЛУПРОЗРАЧНЫЕ ОБЪЕКТЫ НА ФОНЕ (УБРАЛИ ШАР) --- */
+.daf-watermark {
+    position: absolute;
+    opacity: 0.03; 
+    pointer-events: none;
+    z-index: 1;
+    color: #13161F;
+}
+/* Штрихкод */
+.daf-wm-1 {
+    top: -5%; left: -5%;
+    width: 400px; height: 400px;
+    transform: rotate(-15deg);
+}
+/* Коробка */
+.daf-wm-2 {
+    bottom: -10%; right: -5%;
+    width: 500px; height: 500px;
+}
+
+.daf-cases-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column; /* Для центрирования кнопки внизу */
+    align-items: center;
+}
+
+/* Заголовок */
+.daf-cases-heading {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 60px;
+    letter-spacing: -0.02em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.daf-cases-subtitle {
+    font-family: 'Bounded', sans-serif;
+    font-size: 16px;
+    color: #FF6300;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+/* Анимированная плашка логотипа */
+.daf-logo-badge {
+    background: #13161F;
+    padding: 10px 30px;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.daf-logo-badge::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: skewX(-20deg);
+    animation: badgeShine 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+.daf-pain-logo { height: 28px; position: relative; z-index: 2; }
+
+/* Сетка карточек */
+.daf-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    width: 100%; /* Занимает всю ширину контейнера */
+    margin-bottom: 60px; /* Отступ до кнопки */
+}
+
+/* Карточка */
+.daf-case-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.daf-case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(19, 22, 31, 0.06);
+    border-color: rgba(255, 99, 0, 0.3);
+}
+
+/* Фото */
+.daf-case-img-wrap {
+    width: 100%; height: 140px; overflow: hidden; position: relative;
+}
+.daf-case-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.daf-case-card:hover .daf-case-img { transform: scale(1.03); }
+
+/* Контент */
+.daf-case-content {
+    padding: 24px 20px;
+    display: flex; flex-direction: column; flex-grow: 1;
+}
+
+.daf-case-tag {
+    align-self: flex-start;
+    padding: 4px 10px;
+    background: #F3F4F6; color: #4A4F5C;
+    font-size: 12px; font-weight: 700;
+    border-radius: 6px; text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* ДО/ПОСЛЕ (С ТИПОГРАФИКОЙ) */
+.daf-compare-box {
+    display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;
+}
+.daf-compare-row {
+    display: flex; flex-direction: column; gap: 4px;
+}
+.daf-label-bad { font-size: 11px; font-weight: 800; color: #EF4444; text-transform: uppercase; }
+.daf-label-good { font-size: 11px; font-weight: 800; color: #10B981; text-transform: uppercase; }
+/*text-wrap: pretty; - современный CSS для улучшения переносов */
+.daf-compare-text { font-size: 14px; color: #13161F; line-height: 1.4; font-weight: 500; text-wrap: pretty; }
+
+/* Метрика */
+.daf-case-metric-box {
+    margin-top: auto;
+    padding: 12px 16px;
+    background: rgba(16, 185, 129, 0.05);
+    border-left: 3px solid #10B981;
+    border-radius: 0 6px 6px 0;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.daf-metric-wrap { display: flex; flex-direction: column; }
+.daf-case-metric {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 28px; font-weight: 800; color: #10B981; line-height: 1;
+    display: flex; align-items: baseline; gap: 2px;
+}
+/* Склеиваем числа с единицами */
+.daf-case-metric span { font-size: 14px; white-space: nowrap; } 
+.daf-case-metric-desc { font-size: 12px; color: #4A4F5C; margin-top: 4px; font-weight: 600; text-wrap: pretty; }
+
+/* График */
+.daf-chart-svg { width: 70px; height: 24px; flex-shrink: 0; }
+.daf-chart-line {
+    fill: none; stroke: #10B981; stroke-width: 3; stroke-linecap: round;
+    stroke-dasharray: 100; stroke-dashoffset: 100;
+    transition: stroke-dashoffset 1.5s ease-out;
+}
+.is-visible .daf-chart-line { stroke-dashoffset: 0; }
+
+/* =========================================
+   КНОПКА СТА (НАЛИВНАЯ)
+   ========================================= */
+.daf-cases-cta-btn {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    padding: 20px 50px;
+    border-radius: 100px; /* Идеальный овал */
+    
+    /* Наливной градиент + тень */
+    background: linear-gradient(180deg, #FF7A00 0%, #FF6300 100%);
+    box-shadow: 0 10px 30px rgba(255, 99, 0, 0.3);
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Эффект блика при наведении */
+.daf-cases-cta-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 60%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-25deg);
+    transition: 0s;
+}
+
+.daf-cases-cta-btn:hover {
+    transform: translateY(-5px); /* Легкий подъем */
+    box-shadow: 0 15px 40px rgba(255, 99, 0, 0.5); /* Усиление тени */
+}
+.daf-cases-cta-btn:hover::after {
+    left: 200%;
+    transition: 0.8s ease-out; /* Пробегающий блик */
+}
+
+.daf-cases-cta-btn:active {
+    transform: translateY(-2px) scale(0.98); /* Эффект нажатия */
+}
+
+/* Анимация появления */
+.daf-fade-up { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+.daf-fade-up.is-visible { opacity: 1; transform: translateY(0); }
+.daf-delay-1 { transition-delay: 0.1s; }
+.daf-delay-2 { transition-delay: 0.2s; }
+.daf-delay-3 { transition-delay: 0.3s; }
+.daf-delay-cta { transition-delay: 0.4s; }
+
+@keyframes badgeShine {
+    0% { left: -100%; }
+    100% { left: 150%; }
+}
+
+@media (max-width: 980px) {
+    .daf-cases-section { padding: 60px 16px; }
+    .daf-cases-heading { margin-bottom: 40px; }
+    .daf-cases-cta-btn { width: 100%; padding: 18px 20px; font-size: 15px; box-sizing: border-box; }
+}
+</style>
+
+<section class="daf-cases-section">
+    
+    <svg class="daf-watermark daf-wm-1" viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h2v14H4V5zm4 0h1v14H8V5zm3 0h2v14h-2V5zm4 0h3v14h-3V5zm5 0h1v14h-1V5z"/></svg>
+    <svg class="daf-watermark daf-wm-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5"><path d="M21 8l-9 5-9-5 9-5 9 5zM21 8v8l-9 5-9-5V8M12 13v10"/></svg>
+
+    <div class="daf-cases-container">
+        
+        <div class="daf-cases-heading daf-fade-up">
+            <span class="daf-cases-subtitle">Кейсы компании</span>
+            Наши клиенты масштабируются&nbsp;с
+            <div class="daf-logo-badge">
+                <img src="https://static.tildacdn.com/tild6435-3465-4263-b162-623136373531/ful.svg" alt="DaFUL Logo" class="daf-pain-logo">
+            </div>
+        </div>
+
+        <div class="daf-cases-grid">
+            
+            <div class="daf-case-card daf-fade-up daf-delay-1">
+                <div class="daf-case-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1558769132-cb1fac08b042?auto=format&fit=crop&w=600&q=80" alt="Одежда" class="daf-case-img">
+                </div>
+                <div class="daf-case-content">
+                    <span class="daf-case-tag">Ниша: Одежда</span>
+                    
+                    <div class="daf-compare-box">
+                        <div class="daf-compare-row">
+                            <span class="daf-label-bad">До DaFull:</span>
+                            <div class="daf-compare-text">Штрафы за&nbsp;пересорт и&nbsp;неверные ШК при&nbsp;объёме 120&nbsp;000 ед/мес.</div>
+                        </div>
+                        <div class="daf-compare-row">
+                            <span class="daf-label-good">Результат:</span>
+                            <div class="daf-compare-text">Внедрили двойной контроль сканерами, свели ошибки к&nbsp;нулю.</div>
+                        </div>
+                    </div>
+
+                    <div class="daf-case-metric-box">
+                        <div class="daf-metric-wrap">
+                            <div class="daf-case-metric">80<span>%</span></div>
+                            <div class="daf-case-metric-desc">Снижение штрафов</div>
+                        </div>
+                        <svg class="daf-chart-svg" viewBox="0 0 70 24">
+                            <path class="daf-chart-line" d="M2,20 Q15,20 25,12 T45,8 T68,2"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="daf-case-card daf-fade-up daf-delay-2">
+                <div class="daf-case-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80" alt="Товары для дома" class="daf-case-img">
+                </div>
+                <div class="daf-case-content">
+                    <span class="daf-case-tag">Ниша: Товары для дома</span>
+                    
+                    <div class="daf-compare-box">
+                        <div class="daf-compare-row">
+                            <span class="daf-label-bad">До DaFull:</span>
+                            <div class="daf-compare-text">Селлер сам паковал товар, срывал сроки поставки.</div>
+                        </div>
+                        <div class="daf-compare-row">
+                            <span class="daf-label-good">Результат:</span>
+                            <div class="daf-compare-text">Передали рутину&nbsp;нам, селлер занялся только продвижением.</div>
+                        </div>
+                    </div>
+
+                    <div class="daf-case-metric-box">
+                        <div class="daf-metric-wrap">
+                            <div class="daf-case-metric">60<span>+&nbsp;ч</span></div>
+                            <div class="daf-case-metric-desc">Сэкономлено в&nbsp;месяц</div>
+                        </div>
+                        <svg class="daf-chart-svg" viewBox="0 0 70 24">
+                            <path class="daf-chart-line" d="M2,20 Q15,15 30,12 T50,8 T68,2"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="daf-case-card daf-fade-up daf-delay-3">
+                <div class="daf-case-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8ed7c663c0?auto=format&fit=crop&w=600&q=80" alt="Первая поставка" class="daf-case-img">
+                </div>
+                <div class="daf-case-content">
+                    <span class="daf-case-tag">Уровень: Новичок</span>
+                    
+                    <div class="daf-compare-box">
+                        <div class="daf-compare-row">
+                            <span class="daf-label-bad">Задача (До):</span>
+                            <div class="daf-compare-text">Собрать первую партию (800 ед) без&nbsp;опыта работы с&nbsp;МП.</div>
+                        </div>
+                        <div class="daf-compare-row">
+                            <span class="daf-label-good">Результат:</span>
+                            <div class="daf-compare-text">Промаркировали по&nbsp;ТЗ и&nbsp;отгрузили в&nbsp;Коледино за&nbsp;день.</div>
+                        </div>
+                    </div>
+
+                    <div class="daf-case-metric-box">
+                        <div class="daf-metric-wrap">
+                            <div class="daf-case-metric">48<span>ч</span></div>
+                            <div class="daf-case-metric-desc">До&nbsp;приемки на&nbsp;складе</div>
+                        </div>
+                        <svg class="daf-chart-svg" viewBox="0 0 70 24">
+                            <path class="daf-chart-line" d="M2,20 L20,20 L35,6 L45,12 L68,2"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="#rec1947644431" class="daf-cases-cta-btn daf-fade-up daf-delay-cta">
+            Рассчитать мой проект
+        </a>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const animatedElements = document.querySelectorAll('.daf-fade-up');
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -5% 0px', threshold: 0.1 });
+    animatedElements.forEach(el => observer.observe(el));
+});
+</script>

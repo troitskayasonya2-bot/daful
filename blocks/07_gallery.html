@@ -1,0 +1,176 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+.daf-ms-section {
+    padding: 120px 0;
+    background-color: #0A0C10 !important;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    overflow: hidden;
+}
+
+.daf-ms-header {
+    text-align: center;
+    /* Увеличили отступ, чтобы был "воздух" */
+    margin-bottom: 100px; 
+    position: relative;
+    z-index: 20; /* Заголовок всегда выше карточек */
+}
+
+.daf-ms-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 20px;
+    min-height: 600px; 
+    /* Дополнительная защита: контейнер не дает контенту вылезать вверх */
+    overflow: visible; 
+}
+
+.daf-ms-title {
+    font-family: 'Unbounded', sans-serif;
+    color: #FFFFFF;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+}
+.daf-ms-title span { color: #FF6300; }
+
+.daf-ms-card {
+    position: absolute;
+    border-radius: 24px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #16181D;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    opacity: 0;
+    overflow: hidden;
+    cursor: zoom-in;
+    will-change: transform, opacity;
+}
+
+/* Мобильная версия — отключаем абсолютное позиционирование */
+@media (max-width: 640px) {
+    .daf-ms-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-height: auto !important;
+    }
+    .daf-ms-card {
+        position: relative !important;
+        width: 100% !important;
+        height: 350px !important;
+        opacity: 1 !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        x: 0 !important;
+        y: 0 !important;
+    }
+}
+</style>
+
+<div class="daf-ms-section">
+    <div class="daf-ms-header">
+        <h2 class="daf-ms-title">Наш склад <span>изнутри</span></h2>
+    </div>
+    <div class="daf-ms-container" id="dafMasonry"></div>
+</div>
+
+<script>
+window.addEventListener('load', function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const data = [
+        { img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800', ratio: 1.2 },
+        { img: 'https://images.unsplash.com/photo-1565891741441-64926e441838?q=80&w=800', ratio: 0.8 },
+        { img: 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=800', ratio: 1.4 },
+        { img: 'https://images.unsplash.com/photo-1549194382-246df48553f1?q=80&w=800', ratio: 1.0 },
+        { img: 'https://images.unsplash.com/photo-1620455204128-4447a06412f8?q=80&w=800', ratio: 1.1 },
+        { img: 'https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?q=80&w=800', ratio: 0.9 },
+        { img: 'https://images.unsplash.com/photo-1590601393116-2917711b7022?q=80&w=800', ratio: 1.5 },
+        { img: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=800', ratio: 1.0 }
+    ];
+
+    const container = document.getElementById('dafMasonry');
+    
+    // Создаем карточки
+    data.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'daf-ms-card';
+        card.style.backgroundImage = `url(${item.img})`;
+        container.appendChild(card);
+    });
+
+    function doLayout(isInitial = false) {
+        if (window.innerWidth <= 640) return;
+
+        const width = container.offsetWidth - 40;
+        const cols = width > 900 ? 4 : 2;
+        const gap = 20;
+        const colW = (width - (gap * (cols - 1))) / cols;
+        const colHeights = new Array(cols).fill(0);
+
+        const cards = container.querySelectorAll('.daf-ms-card');
+        cards.forEach((card, i) => {
+            const shortestCol = colHeights.indexOf(Math.min(...colHeights));
+            const x = shortestCol * (colW + gap);
+            const y = colHeights[shortestCol];
+            const h = colW * data[i].ratio;
+
+            if (isInitial) {
+                // ПРЕДУСТАНОВКА: карточки СРАЗУ стоят на своих Y, но прозрачные
+                gsap.set(card, {
+                    width: colW,
+                    height: h,
+                    x: x,
+                    y: y,
+                    opacity: 0
+                });
+            } else {
+                // Плавное перемещение при ресайзе
+                gsap.to(card, {
+                    width: colW,
+                    height: h,
+                    x: x,
+                    y: y,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+            }
+
+            colHeights[shortestCol] += h + gap;
+        });
+        container.style.height = Math.max(...colHeights) + 'px';
+    }
+
+    // Сначала расставляем всё по местам (невидимо)
+    doLayout(true);
+
+    // АНИМАЦИЯ ПОЯВЛЕНИЯ: выплывают снизу вверх
+    gsap.fromTo(".daf-ms-card", 
+        { 
+            y: "+=150", // Начинают на 150px ниже своей позиции
+            opacity: 0 
+        },
+        {
+            y: "-=150", // Возвращаются в свою расчетную точку
+            opacity: 1,
+            stagger: 0.1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".daf-ms-container",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            }
+        }
+    );
+
+    window.addEventListener('resize', () => doLayout(false));
+    setTimeout(() => { doLayout(false); ScrollTrigger.refresh(); }, 1000);
+});
+</script>
