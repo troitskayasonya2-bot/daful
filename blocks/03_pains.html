@@ -2,143 +2,252 @@
 
 <style>
 .dafp {
-    background: #F7F8FA;
+    background: #0A0C10;
     width: 100%;
     overflow: hidden;
-    padding: 100px 0 0;
+    padding: 100px 0 120px;
     font-family: 'Outfit', sans-serif;
     position: relative;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
+
 .dafp__wrap {
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 2;
 }
+
+/* ---- ШАПКА ---- */
 .dafp__top {
     display: grid;
     grid-template-columns: 5fr 4fr;
-    gap: 60px;
+    gap: 40px;
     align-items: end;
-    margin-bottom: 64px;
+    margin-bottom: 56px;
 }
+
 .dafp__tag {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #FF6300;
-    background: rgba(255,99,0,0.07);
-    padding: 6px 12px;
-    border-radius: 100px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
-.dafp__tag svg { width: 12px; height: 12px; fill: #FF6300; }
+
+.dafp__tag::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: #FF6300;
+}
+
 .dafp__title {
-    font-size: clamp(30px, 3.5vw, 48px);
+    font-size: clamp(28px, 3.5vw, 46px);
     font-weight: 800;
-    color: #13161F;
+    color: #fff;
     line-height: 1.08;
     letter-spacing: -0.03em;
     margin: 0;
 }
-.dafp__title em { font-style: normal; color: #FF6300; }
+
+.dafp__title em {
+    font-style: normal;
+    color: #FF6300;
+}
+
 .dafp__desc {
     font-size: 15px;
-    color: #6B7280;
-    line-height: 1.7;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.65;
     max-width: 380px;
     align-self: end;
     padding-bottom: 4px;
 }
-.dafp__desc strong { color: #13161F; font-weight: 600; }
-.dafp__rows {
-    border-top: 1px solid rgba(19,22,31,0.08);
-    background: #fff;
-    border-radius: 20px 20px 0 0;
-    overflow: hidden;
-    box-shadow: 0 -4px 24px rgba(19,22,31,0.04);
+
+.dafp__desc strong {
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
 }
+
+/* ---- 4 МЕТРИКИ ---- */
+.dafp__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 56px;
+}
+
+.dafp__metric {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 2px solid #FF6300;
+    padding: 24px 20px;
+    position: relative;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.dafp__metric::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle at top right, rgba(255,99,0,0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.dafp__metric:hover {
+    background: rgba(255,99,0,0.05);
+    border-color: rgba(255,99,0,0.4);
+    border-left-color: #FF6300;
+}
+
+.dafp__metric-val {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.dafp__metric-val em {
+    font-style: normal;
+    color: #FF6300;
+}
+
+.dafp__metric-lbl {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* ---- СПИСОК БОЛЕЙ ---- */
+.dafp__rows {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+}
+
 .dafp__row {
     display: grid;
-    grid-template-columns: 56px 1fr 120px;
+    grid-template-columns: 60px 1fr auto;
     align-items: center;
-    gap: 28px;
-    padding: 28px 36px;
-    border-bottom: 1px solid rgba(19,22,31,0.06);
+    gap: 24px;
+    padding: 24px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     position: relative;
     transition: background 0.25s ease;
     opacity: 0;
     animation: dafpIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
 }
+
 .dafp__row:last-child { border-bottom: none; }
-.dafp__row:nth-child(1) { animation-delay: 0.04s; }
-.dafp__row:nth-child(2) { animation-delay: 0.1s; }
-.dafp__row:nth-child(3) { animation-delay: 0.16s; }
-.dafp__row:nth-child(4) { animation-delay: 0.22s; }
-.dafp__row:nth-child(5) { animation-delay: 0.28s; }
+
+.dafp__row:nth-child(1) { animation-delay: 0.05s; }
+.dafp__row:nth-child(2) { animation-delay: 0.12s; }
+.dafp__row:nth-child(3) { animation-delay: 0.19s; }
+.dafp__row:nth-child(4) { animation-delay: 0.26s; }
+.dafp__row:nth-child(5) { animation-delay: 0.33s; }
+
 @keyframes dafpIn {
-    from { opacity: 0; transform: translateX(-12px); }
+    from { opacity: 0; transform: translateX(-10px); }
     to   { opacity: 1; transform: translateX(0); }
 }
-.dafp__row:hover { background: #FAFAFA; }
+
+.dafp__row:hover { background: rgba(255,99,0,0.04); }
+
 .dafp__row::before {
     content: '';
     position: absolute;
     left: 0; top: 0;
-    width: 3px; height: 0%;
+    width: 2px; height: 0%;
     background: #FF6300;
-    border-radius: 0 2px 2px 0;
     transition: height 0.3s cubic-bezier(0.16,1,0.3,1);
 }
+
 .dafp__row:hover::before { height: 100%; }
+
 .dafp__num {
-    font-size: 22px;
-    font-weight: 900;
-    color: rgba(19,22,31,0.1);
-    letter-spacing: -0.04em;
-    text-align: center;
-    line-height: 1;
-    transition: color 0.25s;
-    font-variant-numeric: tabular-nums;
-}
-.dafp__row:hover .dafp__num { color: #FF6300; }
-.dafp__body { display: flex; flex-direction: column; gap: 4px; }
-.dafp__name {
-    font-size: 17px;
+    font-size: 13px;
     font-weight: 700;
-    color: #13161F;
+    color: rgba(255,99,0,0.4);
+    letter-spacing: 0.06em;
+    text-align: center;
+    transition: color 0.25s;
+}
+
+.dafp__row:hover .dafp__num { color: #FF6300; }
+
+.dafp__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dafp__name {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
     letter-spacing: -0.01em;
     line-height: 1.2;
+    transition: color 0.25s;
 }
+
+.dafp__row:hover .dafp__name { color: #fff; }
+
 .dafp__hint {
     font-size: 13px;
-    color: #9CA3AF;
-    line-height: 1.45;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.4;
     font-weight: 400;
 }
+
 .dafp__badge {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #EF4444;
     background: rgba(239,68,68,0.08);
-    border: 1px solid rgba(239,68,68,0.15);
-    padding: 5px 10px;
+    border: 1px solid rgba(239,68,68,0.2);
+    padding: 4px 10px;
     border-radius: 100px;
     white-space: nowrap;
     justify-self: end;
 }
-.dafp__badge svg { width: 8px; height: 8px; fill: #EF4444; flex-shrink: 0; }
+
+.dafp__badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #EF4444;
+    flex-shrink: 0;
+}
+
+/* ---- НИЖНИЙ БАННЕР ---- */
 .dafp__bottom {
-    background: #13161F;
-    padding: 60px 40px;
+    margin-top: 32px;
+    background: rgba(255,99,0,0.06);
+    border: 1px solid rgba(255,99,0,0.2);
+    border-radius: 16px;
+    padding: 40px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -146,61 +255,57 @@
     position: relative;
     overflow: hidden;
 }
+
 .dafp__bottom::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, #023A11 0%, #10B981 100%);
 }
-.dafp__bottom::after {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(255,99,0,0.12) 0%, transparent 70%);
-    pointer-events: none;
-}
-.dafp__bottom-left { position: relative; z-index: 2; }
+
+.dafp__bottom-left { display: flex; flex-direction: column; gap: 8px; }
+
 .dafp__bottom-label {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #10B981;
-    margin-bottom: 12px;
 }
+
 .dafp__bottom-label::before {
     content: '';
     width: 6px; height: 6px;
     border-radius: 50%;
     background: #10B981;
-    box-shadow: 0 0 8px rgba(16,185,129,0.6);
+    box-shadow: 0 0 8px rgba(16,185,129,0.7);
     animation: dafpPulse 2s infinite;
 }
+
 @keyframes dafpPulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.3); }
+    50%       { opacity: 0.5; transform: scale(1.35); }
 }
+
 .dafp__bottom-title {
-    font-size: clamp(20px, 2.5vw, 30px);
+    font-size: clamp(18px, 2.2vw, 26px);
     font-weight: 800;
     color: #fff;
     letter-spacing: -0.025em;
     line-height: 1.15;
-    margin-bottom: 10px;
 }
+
 .dafp__bottom-sub {
     font-size: 14px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.35);
     line-height: 1.5;
     max-width: 480px;
 }
+
 .dafp__cta {
     display: inline-flex;
     align-items: center;
@@ -215,42 +320,77 @@
     border-radius: 100px;
     white-space: nowrap;
     flex-shrink: 0;
-    position: relative; z-index: 2;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 8px 24px rgba(255,99,0,0.3);
+    box-shadow: 0 8px 28px rgba(255,99,0,0.35);
 }
-.dafp__cta:hover { background: #e85a00; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(255,99,0,0.45); }
+
+.dafp__cta:hover {
+    background: #e85a00;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(255,99,0,0.5);
+}
+
 .dafp__cta:active { transform: translateY(0) scale(0.98); }
-.dafp__cta svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.dafp__cta svg {
+    width: 16px; height: 16px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* Адаптив */
 @media (max-width: 960px) {
-    .dafp { padding: 70px 0 0; }
-    .dafp__top { grid-template-columns: 1fr; gap: 20px; }
+    .dafp { padding: 70px 0 90px; }
+    .dafp__top { grid-template-columns: 1fr; gap: 16px; }
     .dafp__desc { max-width: 100%; }
-    .dafp__row { grid-template-columns: 44px 1fr; gap: 16px; padding: 22px 24px; }
+    .dafp__metrics { grid-template-columns: repeat(2,1fr); }
+    .dafp__row { grid-template-columns: 44px 1fr; gap: 16px; padding: 20px 24px; }
     .dafp__badge { display: none; }
-    .dafp__bottom { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+    .dafp__bottom { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
     .dafp__cta { width: 100%; justify-content: center; }
 }
+
 @media (max-width: 480px) {
-    .dafp__row { padding: 18px 20px; }
-    .dafp__name { font-size: 15px; }
+    .dafp__metrics { grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .dafp__metric-val { font-size: 1.75rem; }
+    .dafp__row { padding: 16px 16px; gap: 12px; }
+    .dafp__name { font-size: 14px; }
     .dafp__hint { display: none; }
-    .dafp__num { font-size: 18px; }
 }
 </style>
 
 <section class="dafp">
     <div class="dafp__wrap">
+
         <div class="dafp__top">
             <div>
-                <div class="dafp__tag">
-                    <svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
-                    Типичные ошибки
-                </div>
+                <div class="dafp__tag">Типичные ошибки</div>
                 <h2 class="dafp__title">Где селлеры<br>теряют <em>деньги</em></h2>
             </div>
             <p class="dafp__desc">Каждый из этих пунктов — <strong>реальные потери</strong>: штрафы, заморозка карточки, падение рейтинга. Мы закрываем все пять.</p>
         </div>
+
+        <!-- 4 ПРОЗРАЧНЫЕ ПЛАШКИ -->
+        <div class="dafp__metrics">
+            <div class="dafp__metric">
+                <span class="dafp__metric-val">до <em>15%</em></span>
+                <span class="dafp__metric-lbl">от оборота теряют на штрафах за маркировку</span>
+            </div>
+            <div class="dafp__metric">
+                <span class="dafp__metric-val"><em>3×</em></span>
+                <span class="dafp__metric-lbl">возвратов больше при ошибках сборки FBS</span>
+            </div>
+            <div class="dafp__metric">
+                <span class="dafp__metric-val"><em>48ч</em></span>
+                <span class="dafp__metric-lbl">падает карточка из ТОПа при задержке отгрузки</span>
+            </div>
+            <div class="dafp__metric">
+                <span class="dafp__metric-val"><em>0%</em></span>
+                <span class="dafp__metric-lbl">недостач при адресном хранении DaFull</span>
+            </div>
+        </div>
+
+        <!-- СПИСОК БОЛЕЙ -->
         <div class="dafp__rows">
             <div class="dafp__row">
                 <span class="dafp__num">01</span>
@@ -258,7 +398,7 @@
                     <span class="dafp__name">Штрафы за маркировку</span>
                     <span class="dafp__hint">Неверный штрихкод или нечитаемый КИЗ — возврат партии и штраф площадки.</span>
                 </div>
-                <span class="dafp__badge"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>Риск</span>
+                <span class="dafp__badge">Риск</span>
             </div>
             <div class="dafp__row">
                 <span class="dafp__num">02</span>
@@ -266,7 +406,7 @@
                     <span class="dafp__name">Ошибки сборки FBS</span>
                     <span class="dafp__hint">Пересорт или неверная упаковка — покупатель получает не то, рейтинг падает.</span>
                 </div>
-                <span class="dafp__badge"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>Риск</span>
+                <span class="dafp__badge">Риск</span>
             </div>
             <div class="dafp__row">
                 <span class="dafp__num">03</span>
@@ -274,15 +414,15 @@
                     <span class="dafp__name">Потери товара</span>
                     <span class="dafp__hint">Хранение без адресации — недостачи, которые невозможно доказать и никто не компенсирует.</span>
                 </div>
-                <span class="dafp__badge"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>Риск</span>
+                <span class="dafp__badge">Риск</span>
             </div>
             <div class="dafp__row">
                 <span class="dafp__num">04</span>
                 <div class="dafp__body">
                     <span class="dafp__name">Задержки поставок</span>
-                    <span class="dafp__hint">Нет своего транспорта — зависишь от курьеров, которые опаздывают. Карточка выпадает из ТОПа.</span>
+                    <span class="dafp__hint">Нет своего транспорта — зависишь от курьеров. Карточка выпадает из ТОПа.</span>
                 </div>
-                <span class="dafp__badge"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>Риск</span>
+                <span class="dafp__badge">Риск</span>
             </div>
             <div class="dafp__row">
                 <span class="dafp__num">05</span>
@@ -290,19 +430,22 @@
                     <span class="dafp__name">Срыв слотов</span>
                     <span class="dafp__hint">Забронировал слот на WB — не успел подготовить паллет. Штраф, повторная запись, потеря недели.</span>
                 </div>
-                <span class="dafp__badge"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>Риск</span>
-            </div>
-            <div class="dafp__bottom">
-                <div class="dafp__bottom-left">
-                    <div class="dafp__bottom-label">Решение DaFull</div>
-                    <div class="dafp__bottom-title">Берём все эти риски на себя</div>
-                    <div class="dafp__bottom-sub">Маркировка по ТЗ, собственный автопарк, адресное хранение и строгое соблюдение слотов. Фиксируем всё в договоре.</div>
-                </div>
-                <a href="#" onclick="openDafModal(); return false;" class="dafp__cta">
-                    Получить расчёт
-                    <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-                </a>
+                <span class="dafp__badge">Риск</span>
             </div>
         </div>
+
+        <!-- РЕШЕНИЕ -->
+        <div class="dafp__bottom">
+            <div class="dafp__bottom-left">
+                <div class="dafp__bottom-label">Решение DaFull</div>
+                <div class="dafp__bottom-title">Берём все эти риски на себя</div>
+                <div class="dafp__bottom-sub">Маркировка по ТЗ, собственный автопарк, адресное хранение и строгое соблюдение слотов. Фиксируем всё в договоре.</div>
+            </div>
+            <a href="#" onclick="openDafModal(); return false;" class="dafp__cta">
+                Получить расчёт
+                <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+
     </div>
 </section>
