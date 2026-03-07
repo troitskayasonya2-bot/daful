@@ -1,19 +1,20 @@
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 /* =========================================
-   БЛОК: УСЛУГИ (МАГИЯ ДИЗАЙНА + ИДЕАЛЬНЫЙ ТЕКСТ)
+   БЛОК: УСЛУГИ (МАГИЯ ДИЗАЙНА + АККУРАТНЫЙ ТЕКСТ)
    ========================================= */
 
 #daf-services-section {
     background-color: #0A0C10; 
-    padding: 120px 20px;
-    font-family: 'Bounded', sans-serif;
+    padding: 60px 20px 120px;
+    font-family: 'Unbounded', sans-serif;
     color: #FFFFFF;
     position: relative;
     z-index: 10;
     overflow: hidden;
 }
 
-/* Фоновая атмосферная сетка */
 #daf-services-section::before {
     content: '';
     position: absolute;
@@ -27,49 +28,34 @@
     pointer-events: none;
 }
 
-.daf-srv-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
+/* Декоративные элементы */
+.daf-srv-deco { position: absolute; z-index: 0; pointer-events: none; opacity: 0.2; }
+.daf-srv-deco--box1 { top: 12%; left: 5%; width: 80px; height: 80px; border: 2px solid rgba(255, 99, 0, 0.6); border-radius: 8px; transform: rotate(-12deg); }
+.daf-srv-deco--box2 { top: 25%; right: 8%; width: 50px; height: 50px; border: 2px solid rgba(255, 255, 255, 0.25); border-radius: 6px; transform: rotate(8deg); }
+.daf-srv-deco--box3 { bottom: 30%; left: 3%; width: 40px; height: 40px; border: 2px dashed rgba(255, 99, 0, 0.5); border-radius: 4px; }
+.daf-srv-deco--arrow { top: 50%; right: 4%; width: 120px; height: 24px; background: linear-gradient(90deg, transparent 0%, rgba(255, 99, 0, 0.4) 50%, transparent 100%); clip-path: polygon(0 45%, 85% 45%, 85% 20%, 100% 50%, 85% 80%, 85% 55%, 0 55%); }
+.daf-srv-deco--barcode { bottom: 15%; right: 12%; width: 100px; height: 40px; display: flex; gap: 4px; align-items: stretch; transform: rotate(-5deg); }
+.daf-srv-deco--barcode span { flex: 1; background: rgba(255, 255, 255, 0.2); min-width: 4px; }
+.daf-srv-deco--pallet { top: 8%; right: 18%; width: 60px; height: 45px; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 2px; }
+.daf-srv-deco--pallet::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: rgba(255, 255, 255, 0.15); border-radius: 0 0 2px 2px; }
+.daf-srv-deco--route { bottom: 25%; left: 15%; width: 80px; height: 3px; background: repeating-linear-gradient(90deg, rgba(255,99,0,0.5) 0, rgba(255,99,0,0.5) 8px, transparent 8px, transparent 16px); transform: rotate(-25deg); }
 
-/* ЗАГОЛОВОК И ШИРОКИЙ ПОДЗАГОЛОВОК */
-.daf-srv-heading {
-    text-align: center;
-    margin-bottom: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.daf-srv-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: clamp(36px, 4vw, 52px);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
-}
-.daf-srv-title span {
-    color: #FF6300;
-}
+.daf-srv-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+
+.daf-srv-heading { text-align: center; margin-bottom: 70px; display: flex; flex-direction: column; align-items: center; }
+.daf-srv-title { font-family: 'Unbounded', sans-serif; font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+.daf-srv-title span { color: #FF6300; }
+
 .daf-srv-subtitle {
-    font-size: 18px;
+    font-size: 16px; 
     color: #9CA3AF;
-    max-width: 860px; /* Широкий, чтобы не было в миллиард строк */
-    line-height: 1.5;
+    max-width: 800px;
+    line-height: 1.6;
     text-wrap: pretty;
 }
 
-/* СЕТКА УСЛУГ */
-.daf-srv-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-bottom: 40px;
-}
+.daf-srv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
 
-/* SPOTLIGHT КАРТОЧКА (Возвращаем стеклянный эффект) */
 .daf-srv-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -81,103 +67,30 @@
     transition: transform 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Жесткое левое выравнивание */
+    align-items: flex-start;
 }
 
-/* Эффект свечения под курсором */
-.daf-srv-card::before {
-    content: '';
-    position: absolute;
-    top: var(--y, -1000px);
-    left: var(--x, -1000px);
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle closest-side, rgba(255, 99, 0, 0.15), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 0;
-}
-.daf-srv-card:hover {
-    border-color: rgba(255, 99, 0, 0.3);
-    transform: translateY(-4px);
-}
-.daf-srv-card:hover::before {
-    opacity: 1;
-}
-
-.daf-srv-content {
-    position: relative;
-    z-index: 1; /* Контент поверх свечения */
-    width: 100%;
-}
+.daf-srv-card:hover { border-color: rgba(255, 99, 0, 0.3); transform: translateY(-4px); }
 
 .daf-srv-badge {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; justify-content: center;
     background: rgba(255, 99, 0, 0.1);
-    color: #FF6300;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 24px;
-    font-weight: 800;
-    padding: 10px 20px;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    letter-spacing: 1px;
+    color: #FF6300; font-family: 'Unbounded', sans-serif;
+    font-size: 24px; font-weight: 800;
+    padding: 10px 20px; border-radius: 12px; margin-bottom: 24px;
 }
 
-.daf-srv-desc {
-    font-size: 16px;
-    color: #9CA3AF;
-    line-height: 1.5;
-    margin-bottom: 36px;
-    text-align: left;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    width: 100%;
-}
+.daf-srv-desc { font-size: 16px; color: #9CA3AF; line-height: 1.5; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); width: 100%; }
 
-/* ИДЕАЛЬНО ВЫРОВНЕННЫЕ СПИСКИ ИЗ ПРОШЛОГО ВАРИАНТА */
-.daf-srv-list {
-    list-style: none; padding: 0; margin: 0; 
-    display: flex; flex-direction: column; gap: 20px;
-    width: 100%;
-}
-.daf-srv-list li {
-    display: flex;
-    align-items: flex-start; 
-    gap: 16px;
-    text-align: left;
-}
-.daf-srv-icon {
-    flex-shrink: 0; 
-    width: 24px; height: 24px; 
-    background: rgba(16, 185, 129, 0.15); 
-    border-radius: 6px; 
-    display: flex; align-items: center; justify-content: center; 
-    color: #10B981; 
-    margin-top: 2px; 
-}
-.daf-srv-icon svg {
-    width: 12px; height: 12px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round;
-}
+.daf-srv-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+.daf-srv-list li { display: flex; align-items: flex-start; gap: 16px; }
+.daf-srv-icon { flex-shrink: 0; width: 24px; height: 24px; background: rgba(16, 185, 129, 0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #10B981; margin-top: 2px; }
+.daf-srv-icon svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+.daf-srv-text { font-size: 15px; color: #D1D5DB; line-height: 1.45; }
+.daf-srv-text b { color: #FFFFFF; font-weight: 600; }
 
-.daf-srv-text {
-    font-size: 15px; 
-    color: #D1D5DB; 
-    line-height: 1.45; 
-    font-weight: 400;
-}
-.daf-srv-text b {
-    color: #FFFFFF;
-    font-weight: 600;
-}
-
-/* =========================================
-   НАТИВНЫЙ БЛОК ЛИДОГЕНЕРАЦИИ (ВОЗВРАЩАЕМ ГРАДИЕНТ И БЛИК)
-   ========================================= */
+/* БЛОК ЛИДОГЕНЕРАЦИИ */
 .daf-srv-leadgen {
     background: linear-gradient(135deg, rgba(255, 99, 0, 0.1) 0%, rgba(20, 22, 27, 0.8) 100%);
     border: 1px solid rgba(255, 99, 0, 0.3);
@@ -189,101 +102,92 @@
     gap: 40px;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* Блик на блоке лидгена */
-.daf-srv-leadgen::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%; width: 50%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-    transform: skewX(-20deg);
-    animation: badgeShine 5s infinite 2s;
-}
+.daf-leadgen-text { text-align: left; position: relative; z-index: 2; }
+.daf-leadgen-text h4 { font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 800; color: #FFFFFF; margin: 0 0 12px 0; }
+.daf-leadgen-text p { font-size: 15px; color: #9CA3AF; margin: 0; line-height: 1.5; max-width: 650px; }
 
-.daf-leadgen-text {
-    text-align: left;
-    position: relative;
-    z-index: 2;
-}
-.daf-leadgen-text h4 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 24px;
-    font-weight: 800;
-    color: #FFFFFF;
-    margin: 0 0 12px 0;
-}
-.daf-leadgen-text p {
-    font-size: 15px;
-    color: #9CA3AF;
-    margin: 0;
-    line-height: 1.5;
-    max-width: 650px;
-}
-
-/* Кнопка "Пилюля" */
 .daf-srv-btn {
-    background: #FF6300;
+    background: linear-gradient(135deg, #FF7A00 0%, #FF6300 50%, #E55800 100%);
     color: #FFFFFF !important;
     text-decoration: none !important;
     font-family: 'Unbounded', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    padding: 18px 40px;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 20px 44px;
     border-radius: 100px;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(255, 99, 0, 0.2);
+    white-space: nowrap; 
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(255, 99, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
     position: relative;
     z-index: 2;
     flex-shrink: 0;
-}
-.daf-srv-btn:hover {
-    background: #E55800;
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(255, 99, 0, 0.4);
-}
-.daf-srv-btn:active {
-    transform: translateY(0);
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
-/* Анимация появления */
+.daf-srv-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); transform: skewX(-25deg); transition: left 0.6s ease; }
+.daf-srv-btn:hover { background: linear-gradient(135deg, #FF8A1A 0%, #FF7A00 50%, #FF6300 100%); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(255, 99, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset; }
+.daf-srv-btn:hover::before { left: 150%; }
+
 .daf-fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 .daf-fade-up.is-visible { opacity: 1; transform: translateY(0); }
-.daf-delay-1 { transition-delay: 0.1s; }
-.daf-delay-2 { transition-delay: 0.2s; }
-.daf-delay-3 { transition-delay: 0.3s; }
-
-@keyframes badgeShine {
-    0% { left: -100%; }
-    100% { left: 150%; }
-}
 
 /* Адаптив */
 @media (max-width: 980px) {
     #daf-services-section { padding: 80px 16px; }
     .daf-srv-grid { grid-template-columns: 1fr; gap: 20px; }
     .daf-srv-card { padding: 32px 24px; }
-    .daf-srv-leadgen { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
-    .daf-srv-btn { width: 100%; text-align: center; }
+    .daf-srv-leadgen { flex-direction: column; align-items: stretch; padding: 32px 24px; gap: 28px; }
+    .daf-srv-btn { 
+        width: 100%; 
+        white-space: normal;
+        text-align: center;
+    }
+    .daf-srv-deco--arrow, .daf-srv-deco--barcode, .daf-srv-deco--route { display: none; }
+}
+
+@media (max-width: 480px) {
+    .daf-srv-subtitle { font-size: 14px; }
+    .daf-srv-leadgen { padding: 24px 20px; gap: 24px; }
+    .daf-srv-btn { 
+        padding: 18px 20px; 
+        font-size: 15px; 
+        max-width: 100%;
+    }
+    .daf-leadgen-text h4 { font-size: 20px; }
+    
+    .daf-srv-deco--box1 { transform: rotate(-12deg) !important; }
+    .daf-srv-deco--box2 { transform: rotate(8deg) !important; }
 }
 </style>
 
 <section id="daf-services-section">
+    <div class="daf-srv-deco daf-srv-deco--box1"></div>
+    <div class="daf-srv-deco daf-srv-deco--box2"></div>
+    <div class="daf-srv-deco daf-srv-deco--box3"></div>
+    <div class="daf-srv-deco daf-srv-deco--arrow"></div>
+    <div class="daf-srv-deco daf-srv-deco--barcode"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="daf-srv-deco daf-srv-deco--pallet"></div>
+    <div class="daf-srv-deco daf-srv-deco--route"></div>
+    
     <div class="daf-srv-container">
-        
         <div class="daf-srv-heading daf-fade-up">
             <h2 class="daf-srv-title">Берём на&nbsp;себя <span>всю рутину</span></h2>
             <p class="daf-srv-subtitle">Вы занимаетесь продвижением карточек и&nbsp;продажами. Мы&nbsp;делаем так, чтобы&nbsp;ваш товар оказался на&nbsp;полке маркетплейса вовремя, без&nbsp;ошибок и&nbsp;штрафов.</p>
         </div>
 
         <div class="daf-srv-grid">
-            
-            <div class="daf-srv-card daf-fade-up daf-delay-1">
+            <div class="daf-srv-card daf-fade-up">
                 <div class="daf-srv-content">
                     <div class="daf-srv-badge">FBO</div>
                     <div class="daf-srv-desc">Подготовка партий товара для&nbsp;отгрузки на&nbsp;склады Wildberries и&nbsp;Ozon.</div>
-                    
                     <ul class="daf-srv-list">
                         <li>
                             <div class="daf-srv-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
@@ -295,21 +199,16 @@
                         </li>
                         <li>
                             <div class="daf-srv-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                            <div class="daf-srv-text"><b>Маркировка (ШК):</b> генерируем и&nbsp;клеим правильные штрихкоды и&nbsp;КИЗы (Честный Знак).</div>
-                        </li>
-                        <li>
-                            <div class="daf-srv-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                            <div class="daf-srv-text"><b>Отгрузка паллетами:</b> формируем паллеты и&nbsp;строго соблюдаем забронированные слоты.</div>
+                            <div class="daf-srv-text"><b>Маркировка (ШК):</b> генерируем и&nbsp;клеим правильные штрихкоды и&nbsp;КИЗы.</div>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="daf-srv-card daf-fade-up daf-delay-2">
+            <div class="daf-srv-card daf-fade-up">
                 <div class="daf-srv-content">
                     <div class="daf-srv-badge" style="color: #FFFFFF; background: rgba(255,255,255,0.1);">FBS</div>
                     <div class="daf-srv-desc">Хранение на&nbsp;нашем складе и&nbsp;ежедневная сборка заказов от&nbsp;покупателей.</div>
-                    
                     <ul class="daf-srv-list">
                         <li>
                             <div class="daf-srv-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
@@ -321,32 +220,25 @@
                         </li>
                         <li>
                             <div class="daf-srv-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                            <div class="daf-srv-text"><b>Надёжная упаковка:</b> защищаем товар от&nbsp;повреждений при&nbsp;магистральной доставке.</div>
-                        </li>
-                        <li>
-                            <div class="daf-srv-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
                             <div class="daf-srv-text"><b>Ежедневная отгрузка:</b> передаем заказы в&nbsp;СЦ маркетплейса каждый день без&nbsp;выходных.</div>
                         </li>
                     </ul>
                 </div>
             </div>
-
         </div>
 
-        <div class="daf-srv-leadgen daf-fade-up daf-delay-3">
+        <div class="daf-srv-leadgen daf-fade-up">
             <div class="daf-leadgen-text">
                 <h4>Не знаете, какой формат выгоднее?</h4>
-                <p>Хранить всё на&nbsp;нашем складе (FBS) или&nbsp;сразу отгрузить партию на&nbsp;Коледино (FBO)? Сделаем аудит вашей логистики и&nbsp;посчитаем оптимальную юнит-экономику.</p>
+                <p>Хранить всё на&nbsp;нашем складе (FBS) или&nbsp;сразу отгрузить партию на&nbsp;Коледино (FBO)? Сделаем аудит вашей логистики.</p>
             </div>
-            <a href="#rec1947644431" class="daf-srv-btn">Получить расчёт</a>
+            <a href="#" onclick="openDafModal(); return false;" class="daf-srv-btn">Узнать подробнее</a>
         </div>
-
     </div>
 </section>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Анимация появления при скролле
     const animatedElements = document.querySelectorAll('.daf-fade-up');
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
@@ -357,23 +249,5 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }, { rootMargin: '0px 0px -5% 0px', threshold: 0.1 });
     animatedElements.forEach(el => observer.observe(el));
-
-    // Магия Spotlight Effect для карточек
-    const cards = document.querySelectorAll('.daf-srv-card');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            card.style.setProperty('--x', `${x}px`);
-            card.style.setProperty('--y', `${y}px`);
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.setProperty('--x', `-1000px`);
-            card.style.setProperty('--y', `-1000px`);
-        });
-    });
 });
 </script>

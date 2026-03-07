@@ -13,10 +13,9 @@
 
 .daf-ms-header {
     text-align: center;
-    /* Увеличили отступ, чтобы был "воздух" */
     margin-bottom: 100px; 
     position: relative;
-    z-index: 20; /* Заголовок всегда выше карточек */
+    z-index: 20;
 }
 
 .daf-ms-container {
@@ -25,7 +24,6 @@
     position: relative;
     padding: 0 20px;
     min-height: 600px; 
-    /* Дополнительная защита: контейнер не дает контенту вылезать вверх */
     overflow: visible; 
 }
 
@@ -42,6 +40,7 @@
     border-radius: 24px;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background-color: #16181D;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
@@ -49,9 +48,9 @@
     overflow: hidden;
     cursor: zoom-in;
     will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
-/* Мобильная версия — отключаем абсолютное позиционирование */
 @media (max-width: 640px) {
     .daf-ms-container {
         display: flex;
@@ -85,19 +84,18 @@ window.addEventListener('load', function() {
     gsap.registerPlugin(ScrollTrigger);
 
     const data = [
-        { img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800', ratio: 1.2 },
-        { img: 'https://images.unsplash.com/photo-1565891741441-64926e441838?q=80&w=800', ratio: 0.8 },
-        { img: 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=800', ratio: 1.4 },
-        { img: 'https://images.unsplash.com/photo-1549194382-246df48553f1?q=80&w=800', ratio: 1.0 },
-        { img: 'https://images.unsplash.com/photo-1620455204128-4447a06412f8?q=80&w=800', ratio: 1.1 },
-        { img: 'https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?q=80&w=800', ratio: 0.9 },
-        { img: 'https://images.unsplash.com/photo-1590601393116-2917711b7022?q=80&w=800', ratio: 1.5 },
-        { img: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=800', ratio: 1.0 }
+        { img: 'https://static.tildacdn.com/tild6537-6462-4138-b737-633331643664/4.png', ratio: 1.3 },
+        { img: 'https://static.tildacdn.com/tild3164-3662-4165-b939-626535653062/2.png', ratio: 0.9 },
+        { img: 'https://static.tildacdn.com/tild3363-3837-4364-b335-393066653064/8.png', ratio: 1.5 },
+        { img: 'https://static.tildacdn.com/tild6537-6164-4661-b462-396339323134/5.png', ratio: 1.1 },
+        { img: 'https://static.tildacdn.com/tild3239-3137-4261-b765-366161366534/3.png', ratio: 1.2 },
+        { img: 'https://static.tildacdn.com/tild6536-3461-4864-a133-393165663063/9.png', ratio: 1.0 },
+        { img: 'https://static.tildacdn.com/tild3030-3939-4431-b131-383863353238/6.png', ratio: 1.6 },
+        { img: 'https://static.tildacdn.com/tild6331-3939-4265-a431-663631303166/7.png', ratio: 1.1 }
     ];
 
     const container = document.getElementById('dafMasonry');
     
-    // Создаем карточки
     data.forEach((item, i) => {
         const card = document.createElement('div');
         card.className = 'daf-ms-card';
@@ -122,7 +120,6 @@ window.addEventListener('load', function() {
             const h = colW * data[i].ratio;
 
             if (isInitial) {
-                // ПРЕДУСТАНОВКА: карточки СРАЗУ стоят на своих Y, но прозрачные
                 gsap.set(card, {
                     width: colW,
                     height: h,
@@ -131,7 +128,6 @@ window.addEventListener('load', function() {
                     opacity: 0
                 });
             } else {
-                // Плавное перемещение при ресайзе
                 gsap.to(card, {
                     width: colW,
                     height: h,
@@ -147,17 +143,15 @@ window.addEventListener('load', function() {
         container.style.height = Math.max(...colHeights) + 'px';
     }
 
-    // Сначала расставляем всё по местам (невидимо)
     doLayout(true);
 
-    // АНИМАЦИЯ ПОЯВЛЕНИЯ: выплывают снизу вверх
     gsap.fromTo(".daf-ms-card", 
         { 
-            y: "+=150", // Начинают на 150px ниже своей позиции
+            y: "+=150",
             opacity: 0 
         },
         {
-            y: "-=150", // Возвращаются в свою расчетную точку
+            y: "-=150",
             opacity: 1,
             stagger: 0.1,
             duration: 1,

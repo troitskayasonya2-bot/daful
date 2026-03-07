@@ -1,0 +1,487 @@
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+.daf-reviews {
+    background: #FFFFFF;
+    padding: 80px 24px 100px;
+    font-family: 'Outfit', sans-serif;
+    color: #1F2937;
+    position: relative;
+    overflow: hidden;
+}
+
+.daf-reviews::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,99,0,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.daf-reviews::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.daf-reviews__deco {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.daf-reviews__deco--1 {
+    top: 15%; left: 8%;
+    width: 50px; height: 50px;
+    border: 2px solid rgba(255,99,0,0.2);
+    border-radius: 50%;
+}
+
+.daf-reviews__deco--2 {
+    top: 55%; right: 12%;
+    width: 36px; height: 36px;
+    background: rgba(255,99,0,0.06);
+    border-radius: 8px;
+    transform: rotate(45deg);
+}
+
+.daf-reviews__deco--3 {
+    bottom: 20%; left: 15%;
+    width: 70px; height: 70px;
+    border: 1px dashed rgba(0,0,0,0.06);
+    border-radius: 50%;
+}
+
+.daf-reviews__wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.daf-reviews__title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 48px;
+    letter-spacing: -0.02em;
+    color: #0A0C10;
+}
+
+.daf-reviews__title span {
+    color: #FF6300;
+}
+
+.daf-reviews-stats {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.daf-reviews-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 40px;
+    text-align: center;
+    max-width: 420px;
+}
+
+.daf-reviews-stats__item {
+    position: relative;
+}
+
+.daf-reviews-stats__num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(28px, 3.5vw, 36px);
+    font-weight: 800;
+    color: #FF6300;
+    line-height: 1;
+    display: block;
+}
+
+.daf-reviews-stats__lbl {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6B7280;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.daf-reviews__carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.daf-reviews__track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.daf-reviews__card {
+    flex: 0 0 33.333%;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+
+.daf-reviews__card-inner {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 24px;
+    padding: 24px 24px 20px;
+    min-height: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.daf-reviews__card-inner:hover {
+    border-color: rgba(255, 99, 0, 0.25);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.daf-reviews__avatar-wrap {
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.daf-reviews__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 99, 0, 0.3);
+}
+
+.daf-reviews__avatar-initials {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #A1A1AA 0%, #71717A 100%); 
+    border: 3px solid rgba(255, 99, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+}
+
+.daf-reviews__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.daf-reviews__quote {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4B5563;
+    margin-bottom: 14px;
+    flex-grow: 1;
+}
+
+.daf-reviews__quote::before {
+    content: '"';
+    color: #FF6300;
+    font-size: 2em;
+    line-height: 0;
+    vertical-align: -0.25em;
+}
+
+.daf-reviews__name {
+    font-weight: 700;
+    font-size: 15px;
+    color: #0A0C10;
+}
+
+.daf-reviews__role {
+    font-size: 12px;
+    color: #6B7280;
+    margin-top: 2px;
+}
+
+.daf-reviews__dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 36px;
+}
+
+.daf-reviews__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.daf-reviews__dot:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.daf-reviews__dot.active {
+    background: #FF6300;
+    width: 28px;
+    border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+    .daf-reviews-stats__grid { gap: 20px 32px; max-width: 380px; }
+    .daf-reviews__card { flex: 0 0 50%; }
+}
+
+@media (max-width: 640px) {
+    .daf-reviews-stats__grid { grid-template-columns: 1fr; gap: 16px; max-width: 280px; }
+    .daf-reviews-stats { margin-bottom: 40px; }
+    .daf-reviews__card { flex: 0 0 100%; }
+}
+
+@media (max-width: 480px) {
+    .daf-reviews { padding: 56px 16px 72px; }
+    .daf-reviews__card-inner { padding: 20px 18px 18px; min-height: 260px; }
+    .daf-reviews__avatar, .daf-reviews__avatar-initials { width: 64px; height: 64px; }
+    .daf-reviews__avatar-initials { font-size: 20px; }
+}
+</style>
+
+<section class="daf-reviews">
+    <div class="daf-reviews__deco daf-reviews__deco--1"></div>
+    <div class="daf-reviews__deco daf-reviews__deco--2"></div>
+    <div class="daf-reviews__deco daf-reviews__deco--3"></div>
+    
+    <div class="daf-reviews__wrap">
+        <h2 class="daf-reviews__title">Отзывы селлеров о нашем <span>фулфилменте</span></h2>
+
+        <div class="daf-reviews-stats">
+            <div class="daf-reviews-stats__grid">
+                <div class="daf-reviews-stats__item">
+                    <span class="daf-reviews-stats__num" id="dafStatRating">0</span>
+                    <span class="daf-reviews-stats__lbl">Оценка</span>
+                </div>
+                <div class="daf-reviews-stats__item">
+                    <span class="daf-reviews-stats__num" id="dafStatClients">0</span>
+                    <span class="daf-reviews-stats__lbl">Клиентов</span>
+                </div>
+                <div class="daf-reviews-stats__item">
+                    <span class="daf-reviews-stats__num" id="dafStatRecommend">0</span>
+                    <span class="daf-reviews-stats__lbl">Рекомендуют</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="daf-reviews__carousel">
+            <div class="daf-reviews__track" id="dafReviewsTrack">
+                
+                <div class="daf-reviews__card">
+                    <div class="daf-reviews__card-inner">
+                        <div class="daf-reviews__avatar-wrap">
+                            <div class="daf-reviews__avatar-initials">АК</div>
+                        </div>
+                        <div class="daf-reviews__body">
+                            <p class="daf-reviews__quote">Перешли на DaFull полгода назад. Штрафы за маркировку упали до нуля. Раньше теряли 3-5% оборота, сейчас спокойно масштабируемся.</p>
+                            <div class="daf-reviews__name">Алексей К.</div>
+                            <div class="daf-reviews__role">Одежда, 80 000 ед/мес</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="daf-reviews__card">
+                    <div class="daf-reviews__card-inner">
+                        <div class="daf-reviews__avatar-wrap">
+                            <img src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?q=80&w=160&auto=format&fit=crop" alt="Мария С." class="daf-reviews__avatar">
+                        </div>
+                        <div class="daf-reviews__body">
+                            <p class="daf-reviews__quote">Нормальные ребята. Сдаем им хрупкий товар, упаковывают в пупырку на совесть, бой снизился почти до нуля. Ценник средний по рынку, зато голова не болит.</p>
+                            <div class="daf-reviews__name">Мария С.</div>
+                            <div class="daf-reviews__role">Товары для дома</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="daf-reviews__card">
+                    <div class="daf-reviews__card-inner">
+                        <div class="daf-reviews__avatar-wrap">
+                            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=160&auto=format&fit=crop" alt="Дмитрий П." class="daf-reviews__avatar">
+                        </div>
+                        <div class="daf-reviews__body">
+                            <p class="daf-reviews__quote">Первый раз выходил на ВБ, вообще не понимал как маркировать. Забрали груз с Южных ворот, сами всё пересчитали и разжевали. Был мелкий затык со сроками в сезон, но решили быстро.</p>
+                            <div class="daf-reviews__name">Дмитрий П.</div>
+                            <div class="daf-reviews__role">Новый бренд</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="daf-reviews__card">
+                    <div class="daf-reviews__card-inner">
+                        <div class="daf-reviews__avatar-wrap">
+                            <div class="daf-reviews__avatar-initials">ЕВ</div>
+                        </div>
+                        <div class="daf-reviews__body">
+                            <p class="daf-reviews__quote">Сидим на FBS. Главное для меня: отгрузки каждый день без выходных, чтобы индекс продавца не падал. Пока справляются отлично, в чате отвечают оперативно.</p>
+                            <div class="daf-reviews__name">Елена В.</div>
+                            <div class="daf-reviews__role">Косметика, 25 000 ед/мес</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="daf-reviews__card">
+                    <div class="daf-reviews__card-inner">
+                        <div class="daf-reviews__avatar-wrap">
+                            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=160&auto=format&fit=crop" alt="Сергей М." class="daf-reviews__avatar">
+                        </div>
+                        <div class="daf-reviews__body">
+                            <p class="daf-reviews__quote">Объем около 15к единиц в месяц. Нравится прозрачный биллинг, никаких скрытых доплат за «лишний скотч». Видео сборки всегда можно запросить, если ВБ теряет товар.</p>
+                            <div class="daf-reviews__name">Сергей М.</div>
+                            <div class="daf-reviews__role">Электроника</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="daf-reviews__card">
+                    <div class="daf-reviews__card-inner">
+                        <div class="daf-reviews__avatar-wrap">
+                            <div class="daf-reviews__avatar-initials">АЛ</div>
+                        </div>
+                        <div class="daf-reviews__body">
+                            <p class="daf-reviews__quote">Очень выручают с переупаковкой возвратов от ВБ, когда товар приходит в убитом виде. Ремонтируют коробки, клеят новые штрихкоды. Отличная экономия на браке.</p>
+                            <div class="daf-reviews__name">Анна Л.</div>
+                            <div class="daf-reviews__role">Аксессуары</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="daf-reviews__dots" id="dafReviewsDots"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function() {
+    var statsSection = document.querySelector('.daf-reviews-stats');
+    var statRating = document.getElementById('dafStatRating');
+    var statClients = document.getElementById('dafStatClients');
+    var statRecommend = document.getElementById('dafStatRecommend');
+
+    function animateValue(el, end, suffix, duration, isDecimal) {
+        if (!el) return;
+        var start = 0;
+        var startTime = null;
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var easeOut = 1 - Math.pow(1 - progress, 3);
+            var current = Math.floor(start + (end - start) * easeOut);
+            if (isDecimal) {
+                var decimals = Math.floor((start + (end - start) * easeOut) * 10) / 10;
+                el.textContent = decimals.toFixed(1) + (suffix || '');
+            } else {
+                el.textContent = current + (suffix || '');
+            }
+            if (progress < 1) requestAnimationFrame(step);
+            else {
+                el.textContent = isDecimal ? end.toFixed(1) + (suffix || '') : end + (suffix || '');
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    if (statsSection && statRating && statClients && statRecommend) {
+        var statsObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    animateValue(statRating, 5, '', 1200, true);
+                    animateValue(statClients, 5000, '+', 1500, false);
+                    animateValue(statRecommend, 98, '%', 1400, false);
+                    statsObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        statsObs.observe(statsSection);
+    }
+
+    var track = document.getElementById('dafReviewsTrack');
+    var dotsContainer = document.getElementById('dafReviewsDots');
+    if (!track || !dotsContainer) return;
+
+    var cards = track.querySelectorAll('.daf-reviews__card');
+    var total = cards.length;
+    var current = 0;
+    var autoplayInterval;
+
+    function getCardsPerView() {
+        if (window.innerWidth >= 1024) return 3;
+        if (window.innerWidth >= 640) return 2;
+        return 1;
+    }
+
+    function updatePosition() {
+        var perView = getCardsPerView();
+        var offset = -(current * (100 / perView));
+        track.style.transform = 'translateX(' + offset + '%)';
+    }
+
+    function updateDots() {
+        dotsContainer.innerHTML = '';
+        for (var i = 0; i < total; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'daf-reviews__dot' + (i === current ? ' active' : '');
+            dot.setAttribute('aria-label', 'Отзыв ' + (i + 1));
+            (function(idx) {
+                dot.addEventListener('click', function() { goTo(idx); });
+            })(i);
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function goTo(index) {
+        current = Math.max(0, Math.min(index, total - 1));
+        updatePosition();
+        var dots = dotsContainer.querySelectorAll('.daf-reviews__dot');
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+        resetAutoplay();
+    }
+
+    function next() {
+        var perView = getCardsPerView();
+        var maxIndex = Math.max(0, total - perView);
+        if (current >= maxIndex) current = 0;
+        else current++;
+        updatePosition();
+        var dots = dotsContainer.querySelectorAll('.daf-reviews__dot');
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        autoplayInterval = setInterval(next, 5000);
+    }
+
+    updateDots();
+    updatePosition();
+    resetAutoplay();
+
+    window.addEventListener('resize', function() {
+        updatePosition();
+    });
+})();
+</script>

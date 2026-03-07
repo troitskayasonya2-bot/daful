@@ -1,0 +1,226 @@
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+.daf-price-premium {
+    background-color: #0A0C10;
+    padding: 120px 0 140px;
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.daf-bg-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1.5px, transparent 1.5px);
+    background-size: 32px 32px;
+    z-index: 0;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+.daf-premium-glow {
+    position: absolute;
+    top: 50%; right: 15%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255, 99, 0, 0.08) 0%, transparent 60%);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.daf-premium-container {
+    max-width: 1240px;
+    width: 100%;
+    padding: 0 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.daf-premium-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.daf-premium-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+.daf-premium-title span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px #FF6300;
+}
+
+.daf-premium-desc {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.5);
+    padding-left: 20px;
+    border-left: 2px solid #FF6300;
+    max-width: 400px;
+}
+
+.daf-premium-widget {
+    background: rgba(17, 20, 26, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+
+.daf-widget-top {
+    padding: 32px 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.daf-widget-value {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.daf-status-dot {
+    width: 8px; height: 8px;
+    background: #FF6300;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #FF6300;
+}
+
+.daf-widget-middle { padding: 48px 40px; }
+
+.daf-price-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: baseline !important;
+    gap: 12px;
+    white-space: nowrap !important;
+}
+
+.daf-price-from {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.daf-price-number {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 800;
+    color: #FF6300;
+    line-height: 1;
+}
+
+.daf-price-unit {
+    font-family: 'Unbounded', sans-serif !important;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.daf-widget-bottom {
+    display: block;
+    padding: 32px 40px;
+    background: #FF6300;
+    text-decoration: none !important;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+.daf-widget-bottom:hover { background: #FF7B29; }
+
+.daf-btn-premium {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #0A0C10;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.daf-btn-premium svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.daf-widget-bottom:hover svg {
+    transform: translateX(8px);
+}
+
+/* АДАПТИВ */
+@media (max-width: 960px) {
+    .daf-premium-grid { grid-template-columns: 1fr; gap: 40px; }
+    .daf-premium-left { text-align: left; }
+    .daf-premium-glow { display: none; }
+    .daf-price-number { font-size: 56px; }
+}
+
+@media (max-width: 480px) {
+    .daf-premium-title { font-size: 32px; }
+    .daf-price-number { font-size: 38px; }
+    .daf-price-from, .daf-price-unit { font-size: 18px; }
+    .daf-widget-top, .daf-widget-middle, .daf-widget-bottom { padding: 24px 20px; }
+    .daf-btn-premium { font-size: 13px; }
+    .daf-price-row { gap: 8px; }
+}
+</style>
+
+<section class="daf-price-premium">
+    <div class="daf-bg-dots"></div>
+    <div class="daf-premium-glow"></div>
+
+    <div class="daf-premium-container">
+        <div class="daf-premium-grid">
+
+            <div class="daf-premium-left">
+                <h2 class="daf-premium-title">
+                    Сколько стоит<br>
+                    <span>фулфилмент?</span>
+                </h2>
+                <p class="daf-premium-desc">Итоговая стоимость зависит от габаритов и категории вашего товара.</p>
+            </div>
+
+            <div class="daf-premium-widget">
+                <div class="daf-widget-top">
+                    <div class="daf-widget-value">
+                        <div class="daf-status-dot"></div>
+                        На 500 ед. товара
+                    </div>
+                </div>
+
+                <div class="daf-widget-middle">
+                    <div class="daf-price-row">
+                        <span class="daf-price-from">от</span>
+                        <span class="daf-price-number">18–25</span>
+                        <span class="daf-price-unit">₽ / шт</span>
+                    </div>
+                </div>
+
+                <a href="#" onclick="openDafModal(); return false;" class="daf-widget-bottom">
+                    <div class="daf-btn-premium">
+                        <span>Получить точный расчёт</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>

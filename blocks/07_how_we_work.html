@@ -1,0 +1,270 @@
+<!-- =============================================
+     БЛОК: КАК МЫ РАБОТАЕМ
+     Для Tilda: Zero Block (0) → вставить весь код
+     или: Добавить блок → Дополнительно → HTML-код
+     ============================================= -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* База блока */
+.daf-how {
+    background-color: #0A0C10;
+    padding: 120px 0 140px;
+    font-family: 'Outfit', sans-serif;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* --- ФОНОВЫЕ ЭЛЕМЕНТЫ --- */
+.daf-bg-dots {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    background-position: center;
+    z-index: 0;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.daf-bg-line {
+    position: absolute;
+    top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.05) 80%, transparent);
+    z-index: 2; pointer-events: none;
+}
+.daf-bg-line--left { left: 8%; }
+.daf-bg-line--right { right: 8%; }
+
+.daf-bg-cross {
+    position: absolute; width: 20px; height: 20px; z-index: 2; pointer-events: none; opacity: 0.3;
+}
+.daf-bg-cross::before, .daf-bg-cross::after { content: ''; position: absolute; background: #FF6300; }
+.daf-bg-cross::before { top: 9px; left: 0; width: 20px; height: 1px; }
+.daf-bg-cross::after { top: 0; left: 9px; width: 1px; height: 20px; }
+.daf-bg-cross--1 { top: 80px; left: 8%; transform: translate(-10px, -10px); }
+.daf-bg-cross--2 { bottom: 80px; right: 8%; transform: translate(10px, 10px); }
+
+.daf-bg-circle {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 1000px; height: 1000px; border: 1px dashed rgba(255, 255, 255, 0.04);
+    border-radius: 50%; z-index: 1; pointer-events: none;
+    animation: daf-rotate-circle 60s linear infinite;
+}
+@keyframes daf-rotate-circle {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* --- КОНТЕНТ --- */
+.daf-how__wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.daf-how__title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+.daf-how__title .outline { color: #FF6300; }
+
+.daf-how__subtitle {
+    text-align: center; font-size: 16px; color: rgba(255,255,255,0.6);
+    max-width: 500px; margin: 0 auto 60px; line-height: 1.5;
+}
+
+.daf-how__track-label {
+    font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 800;
+    color: #fff; text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.daf-how__track-label::before {
+    content: ''; display: block; width: 8px; height: 8px;
+    background: #FF6300; border-radius: 50%; box-shadow: 0 0 10px rgba(255, 99, 0, 0.6);
+}
+
+.daf-how__process { display: flex; flex-direction: column; gap: 70px; }
+.daf-how__row { display: flex; align-items: center; justify-content: space-between; position: relative; }
+
+.daf-how__row::before {
+    content: ''; position: absolute; left: 20px; right: 20px; top: 50%; height: 0;
+    border-top: 2px dashed rgba(255, 255, 255, 0.15); transform: translateY(-50%); z-index: 1;
+}
+
+.daf-how__signal-wrap {
+    position: absolute; left: 20px; right: 20px; top: 50%; height: 6px;
+    transform: translateY(-50%); pointer-events: none; z-index: 2; overflow: hidden;
+}
+
+.daf-how__signal {
+    position: absolute; top: 1px; left: 0; width: 80px; height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #FF6300 70%, #ffffff 100%);
+    box-shadow: 0 0 12px #FF6300, 0 0 5px #fff;
+    animation: daf-how-signal 3s infinite linear; border-radius: 2px;
+}
+
+@keyframes daf-how-signal {
+    0% { left: -5%; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+}
+
+.daf-how__step {
+    position: relative; z-index: 10; flex: 0 1 220px; width: 100%;
+    background: #11141A; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 32px 16px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; transition: all 0.3s ease; text-align: center;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+
+.daf-how__step:hover {
+    transform: translateY(-5px); border-color: rgba(255, 99, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 99, 0, 0.1);
+    background: #151820;
+}
+
+.daf-how__step-num {
+    font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 32px;
+    color: #FF6300; letter-spacing: 0.02em; display: flex;
+    align-items: center; justify-content: center; height: 40px;
+}
+
+.daf-how__step-label { font-size: 16px; font-weight: 600; line-height: 1.3; }
+
+.daf-how__step--final { background: #FF6300; border-color: #FF6300; color: #0A0C10; }
+.daf-how__step--final .daf-how__step-num { color: #0A0C10; }
+.daf-how__step--final .daf-how__step-num svg { display: block; stroke: #0A0C10; }
+.daf-how__step--final .daf-how__step-label { font-weight: 800; }
+.daf-how__step--final:hover { background: #FF7B29; box-shadow: 0 10px 30px rgba(255, 99, 0, 0.2); }
+
+@media (max-width: 980px) {
+    .daf-how {
+        padding: 80px 24px 100px !important;
+        box-sizing: border-box !important;
+    }
+    .daf-how__wrap {
+        padding: 0 !important;
+        max-width: 100%;
+        box-sizing: border-box !important;
+    }
+    .daf-how__process { gap: 40px; }
+    .daf-how__row {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .daf-how__row .daf-how__step {
+        margin: 12px 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .daf-how__row .daf-how__step:first-of-type { margin-top: 0 !important; }
+    .daf-how__row .daf-how__step:last-child { margin-bottom: 0 !important; }
+    .daf-how__step {
+        flex: none;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 20px 24px !important;
+        gap: 20px;
+        text-align: left;
+    }
+    .daf-how__step-num { font-size: 28px; opacity: 0.5; flex-shrink: 0; }
+    .daf-how__step--final .daf-how__step-num { opacity: 1; }
+    .daf-how__step-label { text-align: left; }
+    .daf-how__row::before, .daf-how__signal-wrap, .daf-bg-circle, .daf-bg-dots, .daf-bg-line, .daf-bg-cross { display: none !important; }
+}
+
+@media (max-width: 480px) {
+    .daf-how {
+        padding: 56px 20px 56px !important;
+        box-sizing: border-box !important;
+    }
+    .daf-how__wrap {
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+    .daf-how__title { font-size: clamp(28px, 8vw, 36px); }
+    .daf-how__subtitle { margin-bottom: 36px; font-size: 14px; }
+    .daf-how__track-label { margin-bottom: 20px; }
+    .daf-how__process { gap: 32px; }
+    .daf-how__row .daf-how__step {
+        margin: 10px 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .daf-how__row .daf-how__step:first-of-type { margin-top: 0 !important; }
+    .daf-how__row .daf-how__step:last-child { margin-bottom: 0 !important; }
+    .daf-how__step {
+        padding: 18px 20px !important;
+        gap: 16px;
+    }
+    .daf-how__step-num { font-size: 24px; }
+    .daf-how__step-label { font-size: 15px; }
+}
+</style>
+
+<section class="daf-how">
+    <div class="daf-bg-dots"></div>
+    <div class="daf-bg-line daf-bg-line--left"></div>
+    <div class="daf-bg-line daf-bg-line--right"></div>
+    <div class="daf-bg-cross daf-bg-cross--1"></div>
+    <div class="daf-bg-cross daf-bg-cross--2"></div>
+    <div class="daf-bg-circle"></div>
+
+    <div class="daf-how__wrap">
+        <h2 class="daf-how__title">Как мы <span class="outline">работаем</span></h2>
+        <p class="daf-how__subtitle">Надежные логистические цепочки: FBO (на склад маркетплейса) и FBS (отгрузка с нашего склада)</p>
+
+        <div class="daf-how__process">
+            <div>
+                <div class="daf-how__track-label">FBO Цепочка</div>
+                <div class="daf-how__row">
+                    <div class="daf-how__signal-wrap"><div class="daf-how__signal"></div></div>
+                    <div class="daf-how__step"><div class="daf-how__step-num">01</div><div class="daf-how__step-label">Оформление заявки</div></div>
+                    <div class="daf-how__step"><div class="daf-how__step-num">02</div><div class="daf-how__step-label">Забор груза</div></div>
+                    <div class="daf-how__step"><div class="daf-how__step-num">03</div><div class="daf-how__step-label">Упаковка по ТЗ</div></div>
+                    <div class="daf-how__step daf-how__step--final">
+                        <div class="daf-how__step-num">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        </div>
+                        <div class="daf-how__step-label">Товар на полке МП</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="daf-how__track-label">FBS Цепочка</div>
+                <div class="daf-how__row daf-how__row--fbs">
+                    <div class="daf-how__signal-wrap"><div class="daf-how__signal"></div></div>
+                    <div class="daf-how__step"><div class="daf-how__step-num">01</div><div class="daf-how__step-label">Хранение на складе</div></div>
+                    <div class="daf-how__step"><div class="daf-how__step-num">02</div><div class="daf-how__step-label">Сборка заказа</div></div>
+                    <div class="daf-how__step daf-how__step--final">
+                        <div class="daf-how__step-num">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                        </div>
+                        <div class="daf-how__step-label">Ежедневная доставка</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

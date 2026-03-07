@@ -1,0 +1,82 @@
+<!-- =============================================
+     БЛОК: БЕГУЩАЯ СТРОКА
+     WB и Ozon — в корпоративных цветах
+     Для Tilda: Zero Block (0) или HTML-код
+     ============================================= -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+.daf-marquee {
+    background: #fff;
+    color: #0A0C10;
+    padding: 24px 0;
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    z-index: 10;
+}
+
+.daf-marquee__track {
+    display: flex;
+    white-space: nowrap;
+    animation: daf-marquee 20s linear infinite;
+}
+
+.daf-marquee__item {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(0.9rem, 1.3vw, 1.15rem);
+    font-weight: 700;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+}
+
+.daf-marquee__item span {
+    color: #FF6300;
+}
+
+.daf-marquee__sep {
+    flex-shrink: 0;
+    margin: 0 3rem;
+    color: #D1D5DB;
+    font-weight: 400;
+    font-size: 0.6em;
+    letter-spacing: 0.15em;
+}
+
+@keyframes daf-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 480px) {
+    .daf-marquee { padding: 20px 0; }
+    .daf-marquee__item { font-size: 0.85rem; }
+    .daf-marquee__sep { margin: 0 2rem; }
+}
+</style>
+
+<section class="daf-marquee">
+    <div class="daf-marquee__track">
+        <div class="daf-marquee__item">ОТГРУЗКА ЗА <span>24 ЧАСА</span></div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item"><span>0% ШТРАФОВ</span> ЗА УПАКОВКУ</div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item"><span>БЕЗ ПОТЕРЬ</span> И НЕДОСТАЧ</div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item">ВИДЕОФИКСАЦИЯ СБОРКИ</div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item"><span>СТРОГО ПО ТЗ</span> МАРКЕТПЛЕЙСОВ</div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item">ОТГРУЗКА ЗА <span>24 ЧАСА</span></div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item"><span>0% ШТРАФОВ</span> ЗА УПАКОВКУ</div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item"><span>БЕЗ ПОТЕРЬ</span> И НЕДОСТАЧ</div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item">ВИДЕОФИКСАЦИЯ СБОРКИ</div>
+        <span class="daf-marquee__sep">///</span>
+        <div class="daf-marquee__item"><span>СТРОГО ПО ТЗ</span> МАРКЕТПЛЕЙСОВ</div>
+        <span class="daf-marquee__sep">///</span>
+    </div>
+</section>

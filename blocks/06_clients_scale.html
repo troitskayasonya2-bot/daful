@@ -1,0 +1,226 @@
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+.daf-clients {
+    position: relative;
+    background: #fff;
+    color: #0A0C10;
+    padding: 80px 0 100px;
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+}
+
+.daf-clients::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, rgba(255, 99, 0, 0.06) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(10, 12, 16, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: 0 0, 16px 16px;
+}
+
+.daf-clients__wrap, .daf-clients__strips {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.daf-clients__title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    text-align: center;
+    color: #0A0C10;
+    margin-bottom: 64px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.daf-clients__strip {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    min-height: 200px;
+    border-top: 1px solid #ddd;
+    transition: background 0.3s;
+    cursor: default;
+}
+
+.daf-clients__strip:last-child { border-bottom: 1px solid #ddd; }
+
+.daf-clients__strip:hover,
+.daf-clients__strip.is-active { background: #fafafa; }
+
+.daf-clients__img {
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+    transition: filter 0.5s;
+    min-height: 180px;
+}
+
+.daf-clients__strip:hover .daf-clients__img,
+.daf-clients__strip.is-active .daf-clients__img { filter: grayscale(0%); }
+
+.daf-clients__stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    color: #0A0C10;
+    text-align: center;
+    padding: 24px 16px;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.35s ease;
+}
+
+.daf-clients__stat::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #FF6300;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
+}
+
+.daf-clients__strip:hover .daf-clients__stat::before,
+.daf-clients__strip.is-active .daf-clients__stat::before { transform: translateY(0); }
+
+.daf-clients__strip:hover .daf-clients__stat,
+.daf-clients__strip.is-active .daf-clients__stat { color: #fff; }
+
+.daf-clients__stat-val, .daf-clients__stat-lbl { position: relative; z-index: 1; }
+
+.daf-clients__stat-lbl {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0A0C10;
+    margin-top: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.35s ease;
+}
+
+.daf-clients__strip:hover .daf-clients__stat-lbl,
+.daf-clients__strip.is-active .daf-clients__stat-lbl { color: rgba(255,255,255,0.9); }
+
+.daf-clients__story {
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.daf-clients__story h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #0A0C10;
+}
+
+.daf-clients__story p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+}
+
+@media (max-width: 1024px) {
+    .daf-clients__strip { grid-template-columns: 1fr; min-height: auto; }
+    .daf-clients__stat { border: none; border-bottom: 1px solid #eee; }
+    .daf-clients__img { min-height: 200px; }
+}
+
+@media (max-width: 480px) {
+    .daf-clients { padding: 48px 0 64px; }
+    .daf-clients__wrap, .daf-clients__strips { padding: 0 16px; }
+    .daf-clients__title { margin-bottom: 40px; font-size: 28px; }
+    .daf-clients__stat-val { font-size: 32px; }
+    .daf-clients__story { padding: 20px 16px; }
+    .daf-clients__story h3 { font-size: 16px; }
+    .daf-clients__story p { font-size: 14px; }
+}
+</style>
+
+<section class="daf-clients">
+    <div class="daf-clients__wrap">
+        <h2 class="daf-clients__title">Наши клиенты масштабируются</h2>
+    </div>
+
+    <div class="daf-clients__strips">
+        <div class="daf-clients__strip">
+            <div class="daf-clients__img" style="background-image: url('https://static.tildacdn.com/tild6563-6463-4362-b965-626136666239/Frame_96.png');"></div>
+            <div class="daf-clients__stat">
+                <span class="daf-clients__stat-val">120K</span>
+                <span class="daf-clients__stat-lbl">ЕД / МЕС</span>
+            </div>
+            <div class="daf-clients__story">
+                <h3>Категория: Одежда</h3>
+                <p>Снизили процент обезлички до 0.1%. Полный цикл FBO.</p>
+            </div>
+        </div>
+
+        <div class="daf-clients__strip">
+            <div class="daf-clients__img" style="background-image: url('https://static.tildacdn.com/tild6536-6166-4136-b733-316665646663/Frame_97.png');"></div>
+            <div class="daf-clients__stat">
+                <span class="daf-clients__stat-val">60+</span>
+                <span class="daf-clients__stat-lbl">ЧАСОВ ЭКОНОМИИ</span>
+            </div>
+            <div class="daf-clients__story">
+                <h3>Товары для дома</h3>
+                <p>Селлер полностью делегировал операционку и занялся закупками.</p>
+            </div>
+        </div>
+
+        <div class="daf-clients__strip">
+            <div class="daf-clients__img" style="background-image: url('https://static.tildacdn.com/tild3138-6361-4361-a266-663131653735/Frame_98.png');"></div>
+            <div class="daf-clients__stat">
+                <span class="daf-clients__stat-val">48ч</span>
+                <span class="daf-clients__stat-lbl">ЗАПУСК</span>
+            </div>
+            <div class="daf-clients__story">
+                <h3>Новый бренд</h3>
+                <p>Первая поставка 800 ед уже на складе МП через 2 дня после обращения.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.innerWidth <= 1024) {
+        const strips = document.querySelectorAll('.daf-clients__strip');
+        
+        const observerOptions = {
+            root: null,
+            threshold: 0.6
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-active');
+                } else {
+                    entry.target.classList.remove('is-active');
+                }
+            });
+        }, observerOptions);
+
+        strips.forEach(strip => {
+            observer.observe(strip);
+        });
+    }
+});
+</script>

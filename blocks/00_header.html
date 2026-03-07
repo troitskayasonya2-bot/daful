@@ -42,7 +42,7 @@
     align-items: center !important;
 }
 
-/* СТИЛЬ ПУНКТОВ МЕНЮ (БЕЛЫЕ, КРУПНЫЕ) */
+/* СТИЛЬ ПУНКТОВ МЕНЮ */
 .daful-nav a:not(.daful-btn) {
     font-family: 'Unbounded', sans-serif !important;
     color: #FFFFFF !important; 
@@ -54,12 +54,10 @@
     transition: color 0.3s ease !important; 
 }
 
-/* ЭФФЕКТ ПРИ НАВЕДЕНИИ: ОРАНЖЕВЫЙ ЦВЕТ */
 .daful-nav a:not(.daful-btn):hover {
     color: #FF6300 !important; 
 }
 
-/* ЛИНИЯ ПРИ НАВЕДЕНИИ */
 .daful-nav a:not(.daful-btn)::after {
     content: '' !important;
     position: absolute !important;
@@ -73,7 +71,7 @@
 }
 .daful-nav a:not(.daful-btn):hover::after { width: 100% !important; }
 
-/* КНОПКА CTA В ШАПКЕ */
+/* КНОПКА CTA */
 .daful-btn {
     font-family: 'Unbounded', sans-serif !important;
     background: #FF6300 !important;
@@ -88,6 +86,7 @@
     box-shadow: 0 4px 15px rgba(255, 99, 0, 0.3) !important;
     transition: all 0.3s ease !important;
     z-index: 1 !important;
+    text-align: center;
 }
 
 .daful-btn::before {
@@ -102,13 +101,13 @@
 }
 .daful-btn:hover::before { left: 150% !important; }
 
-/* БУРГЕР МЕНЮ (МОБИЛКИ) */
+/* БУРГЕР МЕНЮ */
 .daful-burger {
     display: none;
     cursor: pointer;
     flex-direction: column;
     gap: 5px;
-    z-index: 100000;
+    z-index: 100001;
 }
 .daful-burger span {
     width: 28px; height: 2px; background: #FFFFFF; transition: all 0.3s ease;
@@ -117,10 +116,11 @@
 @media (max-width: 980px) {
     .daful-burger { display: flex !important; }
     .daful-nav {
-        position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100vh !important;
+        position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100vh !important;
         background: rgba(10, 10, 10, 0.98) !important;
         flex-direction: column !important; justify-content: center !important; gap: 30px !important;
         opacity: 0; visibility: hidden; transition: all 0.4s ease !important;
+        z-index: 100000;
     }
     .daful-nav.active { opacity: 1 !important; visibility: visible !important; }
     .daful-nav a:not(.daful-btn) { font-size: 20px !important; }
@@ -140,15 +140,16 @@
         </a>
         
         <nav class="daful-nav" id="dafulNav">
-            <a href="#rec1951515961">Услуги</a>
-            <a href="#rec1973708281">Кейсы</a>
-            <a href="#rec1973729341">Стоимость</a>
-            <a href="#reviews">Отзывы</a>
+            <a href="#rec1983295671">Услуги</a>
+            <a href="#rec1988920801">Стоимость</a>
+            <a href="#rec1988560981">Кейсы</a>
+            <a href="#rec1983672711">Отзывы</a>
+            <a href="#rec1983874631">FAQ</a>
             
-            <a href="#rec1973729341" class="daful-btn daful-mobile-btn" style="display: none;">Получить расчет</a>
+            <a href="#" onclick="openDafModal(); return false;" class="daful-btn daful-mobile-btn" style="display: none;">Получить расчет</a>
         </nav>
         
-        <a href="#rec1973729341" class="daful-btn daful-desktop-btn">Получить расчет</a>
+        <a href="#" onclick="openDafModal(); return false;" class="daful-btn daful-desktop-btn">Получить расчет</a>
         
         <div class="daful-burger" id="dafulBurger">
             <span></span><span></span><span></span>
@@ -160,44 +161,46 @@
 document.addEventListener("DOMContentLoaded", function() {
     const burger = document.getElementById('dafulBurger');
     const nav = document.getElementById('dafulNav');
+    const body = document.body;
     
     if(burger && nav) {
-        // Логика открытия мобильного меню
+        // Открытие/закрытие меню
         burger.addEventListener('click', function() {
             nav.classList.toggle('active');
             this.classList.toggle('open');
-            document.body.style.overflow = this.classList.contains('open') ? 'hidden' : '';
+            body.style.overflow = this.classList.contains('open') ? 'hidden' : '';
         });
 
-        // ПЛАВНАЯ ПРОКРУТКА К БЛОКАМ
+        // Плавная прокрутка для всех ссылок
         document.querySelectorAll('.daful-nav a').forEach(link => {
             link.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
                 
-                // Проверяем, что это якорная ссылка
+                // Если ссылка якорная
                 if(targetId && targetId.startsWith('#') && targetId.length > 1) {
-                    e.preventDefault(); // Отменяем стандартный резкий скачок
+                    e.preventDefault();
                     
-                    // Закрываем мобильное меню, если оно было открыто
+                    // Закрываем меню и восстанавливаем скролл
                     nav.classList.remove('active');
                     burger.classList.remove('open');
-                    document.body.style.overflow = '';
+                    body.style.overflow = '';
 
-                    // Находим нужный блок
                     const targetElement = document.querySelector(targetId);
-                    
                     if(targetElement) {
-                        // Высчитываем позицию с учетом высоты шапки (около 80px)
-                        const headerOffset = 80;
+                        const headerOffset = 80; // высота шапки
                         const elementPosition = targetElement.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         
-                        // Запускаем плавную прокрутку
                         window.scrollTo({
                             top: offsetPosition,
                             behavior: "smooth"
                         });
                     }
+                } else if (targetId === '#') {
+                    // Для кнопок попапа просто закрываем мобильное меню
+                    nav.classList.remove('active');
+                    burger.classList.remove('open');
+                    body.style.overflow = '';
                 }
             });
         });

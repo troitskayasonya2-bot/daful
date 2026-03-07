@@ -12,12 +12,17 @@
     background-color: #0A0C10 !important;
     font-family: 'Unbounded', sans-serif !important;
     overflow: hidden !important;
+    box-sizing: border-box !important;
 }
-.daf-hero-bg { position: absolute; inset: 0; z-index: 1; background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80') center/cover no-repeat; filter: brightness(0.45); }
+.daf-hero-bg {
+    position: absolute; inset: 0; z-index: 1;
+    background: url('https://static.tildacdn.com/tild6566-6538-4637-a634-326535613938/Gemini_Generated_Ima.png') center/cover no-repeat;
+    filter: brightness(0.45);
+}
 .daf-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,12,16,0.15) 0%, rgba(10,12,16,0.85) 100%); z-index: 2; }
 .daf-hero-inner {
     position: relative; z-index: 20; text-align: center; margin-top: -80px;
-    width: 100%; max-width: 1240px; padding: 0 20px;
+    width: 100%; max-width: 1240px; padding: 0 20px; box-sizing: border-box;
     display: flex; flex-direction: column; align-items: center;
 }
 .daf-hero-title {
@@ -181,33 +186,85 @@
     .daf-band-val { font-size: 17px; }
     .daf-band-inner::after { display: none; }
 }
+/* Планшет */
 @media (max-width: 768px) {
     .daf-floating-logos { display: none; }
-    .daf-hero-title { font-size: 44px !important; margin-bottom: 30px !important; }
-    .daf-hero-btn { width: auto !important; padding: 18px 60px !important; justify-content: center; font-size: 14px !important; }
-    .daf-hero-desc { font-size: 14px !important; margin-top: 24px !important; max-width: 340px !important; }
-    .daf-band-inner { flex-direction: column; padding: 24px 28px; gap: 20px; align-items: flex-start; }
+    .daf-hero-inner { margin-top: -100px !important; padding: 0 24px; }
+    .daf-hero-title { font-size: 44px !important; margin-bottom: 26px !important; line-height: 1.1 !important; }
+    .daf-hero-btn {
+        width: auto !important; max-width: 100%;
+        padding: 16px 44px !important; min-height: 50px;
+        justify-content: center; font-size: 14px !important;
+    }
+    .daf-hero-desc { font-size: 14px !important; margin-top: 22px !important; max-width: 340px !important; padding: 0 8px; }
+    .daf-bottom-band { position: absolute; bottom: 70px !important; padding: 0 16px; }
+    .daf-band-inner {
+        flex-direction: column; padding: 24px 24px; gap: 20px; align-items: flex-start;
+        border-radius: 16px;
+    }
     .daf-band-item { padding: 0; }
     .daf-band-item + .daf-band-item::before {
         left: 0; top: -10px; height: 0; width: 100%;
         border-left: none; border-top: 1px dashed rgba(255,255,255,0.08);
     }
-    .daf-band-inner::before { display: none; }
+    .daf-band-inner::before,
+    .daf-band-inner::after { display: none; }
     .daf-route-dot { display: none; }
-    .daf-hero-inner { margin-top: 0; }
     .daf-hero-wrap { min-height: 750px !important; }
 }
+
+/* Мобилка */
 @media (max-width: 480px) {
-    .daf-hero-wrap { min-height: 680px !important; }
-    .daf-hero-title { font-size: 28px !important; margin-bottom: 24px !important; }
-    .daf-hero-btn { width: 92% !important; padding: 16px 0 !important; font-size: 13px !important; gap: 10px; }
-    .daf-hero-btn svg { width: 18px; height: 18px; }
-    .daf-hero-desc { font-size: 13px !important; margin-top: 20px !important; max-width: 300px !important; }
-    .daf-band-val { font-size: 14px; }
-    .daf-band-lbl { font-size: 11px; }
-    .daf-band-ico { width: 40px; height: 40px; }
+    .daf-hero-wrap {
+        min-height: 100dvh !important;
+        min-height: 100vh !important;
+        min-height: -webkit-fill-available !important;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+    .daf-hero-inner { padding: 0 16px; margin-top: -130px !important; }
+    .daf-hero-title {
+        font-size: clamp(26px, 8vw, 32px) !important;
+        margin-bottom: 18px !important;
+        line-height: 1.08 !important;
+        letter-spacing: -0.03em !important;
+    }
+    .daf-hero-btn {
+        width: auto !important; max-width: 280px;
+        padding: 14px 28px !important; min-height: 46px;
+        font-size: 13px !important; gap: 9px;
+        border-radius: 50px !important;
+    }
+    .daf-hero-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+    .daf-hero-desc {
+        font-size: 13px !important; margin-top: 16px !important;
+        max-width: 100% !important; padding: 0 4px;
+    }
+    .daf-bottom-band {
+        position: absolute;
+        bottom: 50px !important;
+        padding: 0 12px;
+    }
+    .daf-band-inner {
+        padding: 20px 16px; gap: 16px;
+        border-radius: 14px;
+    }
+    .daf-band-item { gap: 14px; }
+    .daf-band-val { font-size: 14px !important; }
+    .daf-band-lbl { font-size: 11px !important; }
+    .daf-band-ico { width: 40px; height: 40px; flex-shrink: 0; }
     .daf-band-ico svg { width: 18px; height: 18px; }
-    .daf-band-inner { padding: 20px 20px; gap: 16px; }
+}
+
+/* Очень узкие экраны */
+@media (max-width: 360px) {
+    .daf-hero-inner { margin-top: -100px !important; }
+    .daf-hero-title { font-size: 24px !important; margin-bottom: 14px !important; }
+    .daf-hero-btn { font-size: 12px !important; padding: 12px 22px !important; min-height: 44px; max-width: 250px; }
+    .daf-hero-btn svg { width: 16px; height: 16px; }
+    .daf-hero-desc { font-size: 12px !important; margin-top: 14px !important; }
+    .daf-band-val { font-size: 13px !important; }
+    .daf-band-inner { padding: 16px 12px; gap: 14px; }
+    .daf-bottom-band { bottom: 30px !important; }
 }
 </style>
 
@@ -221,8 +278,8 @@
     </div>
 
     <div class="daf-floating-logos">
-        <img src="https://id-preview--c2869ad4-ee73-433a-a780-33119f574c46.lovable.app/images/logo-wb.png" alt="Wildberries" />
-        <img src="https://id-preview--c2869ad4-ee73-433a-a780-33119f574c46.lovable.app/images/logo-ozon.png" alt="Ozon" />
+        <img src="https://static.tildacdn.com/tild3532-3930-4366-a266-653430336563/WB_2024_Icon.webp" alt="Wildberries" />
+        <img src="https://static.tildacdn.com/tild6236-6361-4835-b363-663962383162/ozon-icon-logo.png" alt="Ozon" />
     </div>
 
     <div class="daf-bottom-band">
@@ -250,7 +307,7 @@
                     <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
                 </div>
                 <div>
-                    <div class="daf-band-val"><em>10 000+</em> отгруженных товаров</div>
+                    <div class="daf-band-val"><em>35 000+</em> отгрузок</div>
                     <div class="daf-band-lbl">Без штрафов и потерь</div>
                 </div>
             </div>
